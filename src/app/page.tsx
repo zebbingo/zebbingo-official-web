@@ -11,9 +11,9 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
 
           {/* Left Column */}
-          <div className="flex flex-col items-start space-y-6 pt-4 lg:pt-12">
+          <div className="flex flex-col items-start space-y-2 pt-4 lg:pt-12">
              {/* Top Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-black leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-black leading-tight tracking-tight whitespace-nowrap">
               We&apos;re building something exciting.
             </h1>
 
