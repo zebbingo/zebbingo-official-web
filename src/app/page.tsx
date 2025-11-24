@@ -5,20 +5,20 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center p-6 md:p-12 relative">
 
       {/* Main Container */}
-      <div className="w-full max-w-7xl flex flex-col gap-6 md:gap-10">
+      <div className="w-full max-w-[1400px] flex flex-col gap-6 md:gap-10">
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-8 items-start">
 
           {/* Left Column */}
-          <div className="flex flex-col items-start space-y-2 pt-4 lg:pt-12">
+          <div className="flex flex-col items-start space-y-0 pt-4 lg:pt-12">
              {/* Top Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-black leading-tight tracking-tight whitespace-nowrap">
+            <h1 className="text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.5rem] font-bold text-black leading-tight tracking-tight whitespace-nowrap">
               We&apos;re building something exciting.
             </h1>
 
             {/* Logo Section */}
-            <div className="relative w-72 h-72 md:w-96 md:h-96 -ml-5 -mt-2 -mb-2">
+            <div className="relative w-72 h-72 md:w-96 md:h-96 -ml-5 -mt-10 -mb-10">
               <Image
                 src="/assets/Zebbingo_Logo_RGB.png"
                 alt="Zebbingo Logo"
@@ -29,7 +29,7 @@ export default function Home() {
             </div>
 
             {/* Description */}
-            <p className="text-2xl md:text-3xl lg:text-[2.15rem] font-bold leading-snug text-black max-w-2xl tracking-tight">
+            <p className="text-2xl md:text-3xl lg:text-[2.15rem] font-bold leading-snug text-black max-w-2xl tracking-tight -mt-2">
               Our interactive, AI-powered device nurtures curiosity, creativity and emotional intelligence through personalised storytelling that grows with every child.
             </p>
           </div>
