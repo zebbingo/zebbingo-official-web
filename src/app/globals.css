@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Liebling';
+  src: url('/fonts/fonnts.com-Liebling_Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Liebling';
+  src: url('/fonts/fonnts.com-Liebling_Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Liebling';
+  src: url('/fonts/fonnts.com-Liebling_Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Liebling';
+  src: url('/fonts/fonnts.com-Liebling_Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Liebling';
+  src: url('/fonts/fonnts.com-Liebling_Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Liebling';
+  src: url('/fonts/fonnts.com-Liebling_Heavy.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Liebling';
+  src: url('/fonts/fonnts.com-Liebling_Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@theme {
+  /* Brand Colors */
+  --color-zebbingo-blue-light: #6EC4E8;
+
+  /* Fonts */
+  --font-sans: 'Liebling', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Liebling', ui-sans-serif, system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-glow: 0 0 15px rgba(255, 215, 0, 0.6);
+  
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-black;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.87), rgba(255, 255, 255, 0.87)), url('/assets/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
