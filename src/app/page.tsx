@@ -8,17 +8,17 @@ export default function Home() {
       <div className="w-full max-w-[1400px] flex flex-col gap-6 md:gap-10">
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-4 lg:gap-8 items-start">
 
           {/* Left Column */}
-          <div className="flex flex-col items-start space-y-0 pt-4 lg:pt-12">
-             {/* Top Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.5rem] font-bold text-black leading-tight tracking-tight whitespace-nowrap">
+          <div className="flex flex-col items-start space-y-0 -mt-4 lg:-mt-12">
+             {/* Top Headline - Reduced size */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight tracking-tight whitespace-nowrap">
               We&apos;re building something exciting.
             </h1>
 
             {/* Logo Section */}
-            <div className="relative w-72 h-72 md:w-96 md:h-96 -ml-5 -mt-10 -mb-10">
+            <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 -ml-5 -mt-8 -mb-8">
               <Image
                 src="/assets/Zebbingo_Logo_RGB.png"
                 alt="Zebbingo Logo"
@@ -28,15 +28,15 @@ export default function Home() {
               />
             </div>
 
-            {/* Description */}
-            <p className="text-2xl md:text-3xl lg:text-[2.15rem] font-bold leading-snug text-black max-w-2xl tracking-tight -mt-2">
+            {/* Description - Increased size */}
+            <p className="text-2xl md:text-3xl lg:text-[2.5rem] font-bold leading-tight text-black max-w-xl lg:max-w-2xl tracking-tight -mt-4">
               Our interactive, AI-powered device nurtures curiosity, creativity and emotional intelligence through personalised storytelling that grows with every child.
             </p>
           </div>
 
           {/* Right Column - Cowboy */}
-          <div className="flex justify-center lg:justify-end relative items-center h-full mt-4 lg:mt-0">
-            <div className="relative w-96 h-96 md:w-[650px] md:h-[650px] lg:-mr-16 lg:-mt-8">
+          <div className="flex justify-center lg:justify-end relative items-center h-full mt-4 lg:mt-0 pointer-events-none">
+            <div className="relative w-96 h-96 md:w-[600px] md:h-[600px] lg:w-[680px] lg:h-[680px] lg:-mr-20 lg:-mt-20">
               {/* Cowboy Image with Glow */}
               <Image
                 src="/assets/cowboy.png"
@@ -51,7 +51,7 @@ export default function Home() {
         </div>
 
         {/* Bottom Text */}
-        <div className="mt-2 lg:-mt-10 flex justify-end lg:pr-16 relative z-10">
+        <div className="mt-2 lg:-mt-16 flex justify-end lg:pr-20 relative z-10">
           <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-black text-right tracking-tight">
             What will you find on your <span className="text-[#6EC4E8]">Zebbingo</span> adventure?
           </p>
