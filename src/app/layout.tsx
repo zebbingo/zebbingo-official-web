@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: 'Zebbingo',
   description: "Our interactive, AI-powered device nurtures curiosity, creativity and emotional intelligence through personalised storytelling that grows with every child.",
+  icons: {
+    icon: '/logo_white_backgroud.png',
+  },
 };
 
 export default function RootLayout({
