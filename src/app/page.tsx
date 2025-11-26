@@ -87,7 +87,7 @@ export default function Home() {
             </div>
 
             {/* Description */}
-            <p className="text-[2.5rem] font-bold leading-tight text-black max-w-2xl tracking-tight -mt-4">
+            <p className="text-3xl xl:text-4xl 2xl:text-[2.5rem] font-bold leading-tight text-black max-w-2xl tracking-tight -mt-4">
               Our interactive, AI-powered device nurtures curiosity, creativity and emotional intelligence through personalised storytelling that grows with every child.
             </p>
           </div>
@@ -109,8 +109,8 @@ export default function Home() {
         </div>
 
         {/* Bottom Text */}
-        <div className="-mt-16 flex justify-end pr-20 relative z-10">
-          <p className="text-4xl font-bold text-black text-right tracking-tight">
+        <div className="mt-8 flex justify-end pr-20 relative z-10">
+          <p className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-black text-right tracking-tight">
             What will you find on your <span className="text-[#6EC4E8]">Zebbingo</span> adventure?
           </p>
         </div>
