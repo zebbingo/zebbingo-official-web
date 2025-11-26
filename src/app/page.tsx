@@ -9,7 +9,7 @@ export default function Home() {
 
         {/* 1. Logo - Spanning nearly whole width */}
         <div className="relative w-[90%] aspect-square max-h-[300px] -my-10">
-          <Image
+           <Image
             src="/assets/Zebbingo_Logo_RGB.png"
             alt="Zebbingo Logo"
             fill
@@ -63,14 +63,14 @@ export default function Home() {
 
       {/* ==================== DESKTOP LAYOUT (>= 1280px) ==================== */}
       {/* This preserves the original layout that was confirmed as "fine" */}
-      <div className="hidden lg:flex w-full max-w-[1400px] flex-col gap-10">
+      <div className="hidden xl:flex w-full max-w-[1400px] flex-col gap-10">
 
         {/* Content Grid */}
         <div className="grid grid-cols-[1.1fr_0.9fr] gap-8 items-start">
 
           {/* Left Column */}
           <div className="flex flex-col items-start space-y-0 -mt-12">
-            {/* Top Headline */}
+             {/* Top Headline */}
             <h1 className="text-5xl font-bold text-black leading-tight tracking-tight">
               We&apos;re building something exciting.
             </h1>
