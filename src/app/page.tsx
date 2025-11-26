@@ -110,7 +110,7 @@ export default function Home() {
 
         {/* Bottom Text */}
         <div className="mt-8 flex justify-end pr-20 relative z-10">
-          <p className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-black text-right tracking-tight">
+          <p className="text-3xl xl:text-4xl 2xl:text-[2.5rem] font-bold text-black text-right tracking-tight">
             What will you find on your <span className="text-[#6EC4E8]">Zebbingo</span> adventure?
           </p>
         </div>
