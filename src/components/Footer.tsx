@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import packageInfo from '../../package.json';
 
 const Footer = () => {
   return (
@@ -30,8 +31,8 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-zebbingo-50 pt-8 text-center text-sm text-soft-ink/60">
-          <p>© {new Date().getFullYear()} Zebbingo. All rights reserved.</p>
+        <div className="border-t border-zebbingo-50 pt-8 text-center text-sm text-soft-ink/60 flex flex-col items-center gap-2">
+          <p>© {new Date().getFullYear()} Zebbingo. All rights reserved. v{packageInfo.version}</p>
         </div>
       </div>
     </footer>

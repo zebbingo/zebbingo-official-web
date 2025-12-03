@@ -68,7 +68,7 @@
     background-color: white;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1440px) {
     body {
       background-image: linear-gradient(rgba(255, 255, 255, 0.87), rgba(255, 255, 255, 0.87)), url('/assets/background.png');
       background-size: cover;

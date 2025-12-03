@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 lg:p-12 relative overflow-x-hidden">
 
-      {/* ==================== MOBILE/TABLET LAYOUT (< 1280px) ==================== */}
+      {/* ==================== MOBILE/TABLET LAYOUT (< 1440px) ==================== */}
       <div className="xl:hidden flex flex-col items-center w-full max-w-[600px] mx-auto text-center">
 
         {/* 1. Logo - Spanning nearly whole width */}
@@ -52,7 +52,7 @@ export default function Home() {
       </div>
 
 
-      {/* ==================== DESKTOP LAYOUT (>= 1280px) ==================== */}
+      {/* ==================== DESKTOP LAYOUT (>= 1440px) ==================== */}
       {/* This preserves the original layout that was confirmed as "fine" */}
       <div className="hidden xl:flex w-full max-w-[1400px] flex-col gap-10">
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import packageInfo from "../../package.json";
 
 export const metadata: Metadata = {
   title: 'Zebbingo | AI learning toy',
@@ -24,7 +25,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col" data-version={packageInfo.version}>
         {/* 
           Inject JSON-LD structured data for SEO.
           We use dangerouslySetInnerHTML to prevent React from escaping special characters in the JSON string,
