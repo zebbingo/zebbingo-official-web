@@ -53,6 +53,9 @@
   /* Brand Colors */
   --color-zebbingo-blue-light: #6EC4E8;
 
+  /* Breakpoints */
+  --breakpoint-xl: 1440px;
+
   /* Fonts */
   --font-sans: 'Liebling', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Liebling', ui-sans-serif, system-ui, sans-serif;
