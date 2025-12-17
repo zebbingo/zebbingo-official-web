@@ -45,7 +45,17 @@ export default function Home() {
         {/* 7. CTA - Single line, Bold */}
         <div className="mt-8 md:mt-12 w-full">
           <p className="text-[clamp(1rem,3.5vw,1.8rem)] font-bold text-black">
-            What will you find on your <span className="text-[#6EC4E8]">Zebbingo</span> adventure?
+            What will you find on your{" "}
+            <Image
+              src="/assets/Zebbingo.png"
+              alt="Zebbingo"
+              width={160}
+              height={40}
+              className="inline-block align-[-0.125em] translate-y-[2px]"
+              style={{ width: "auto", height: "1em" }}
+              sizes="160px"
+            />{" "}
+            adventure?
           </p>
         </div>
 
@@ -102,7 +112,17 @@ export default function Home() {
         {/* Bottom Text */}
         <div className="mt-8 flex justify-end pr-20 relative z-10">
           <p className="text-3xl xl:text-4xl 2xl:text-[2.5rem] font-bold text-black text-right tracking-tight">
-            What will you find on your <span className="text-[#6EC4E8]">Zebbingo</span> adventure?
+            What will you find on your{" "}
+            <Image
+              src="/assets/Zebbingo.png"
+              alt="Zebbingo"
+              width={220}
+              height={56}
+              className="inline-block align-[-0.125em] translate-y-[5px]"
+              style={{ width: "auto", height: "1em" }}
+              sizes="220px"
+            />{" "}
+            adventure?
           </p>
         </div>
 
