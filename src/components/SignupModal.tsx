@@ -167,7 +167,7 @@ export default function SignupModal() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-soft-ink mb-1">
-                    Nationality / Country
+                    Country
                     <span className="text-red-500 ml-1">*</span>
                   </label>
                   <input
