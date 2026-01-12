@@ -100,11 +100,11 @@ const SubscribeDrawer = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="fixed right-0 top-0 h-full w-full sm:max-w-md bg-white shadow-2xl z-40 flex flex-col"
+              className="fixed right-0 top-1/2 -translate-y-1/2 max-h-[85vh] sm:max-h-[600px] h-auto w-full sm:max-w-md bg-white shadow-2xl z-40 flex flex-col rounded-l-2xl overflow-hidden"
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-zebbingo-100">
-                <h2 className="text-2xl font-display font-bold text-soft-ink">
+              <div className="flex items-center justify-between p-5 border-b border-zebbingo-100 flex-shrink-0">
+                <h2 className="text-xl font-display font-bold text-soft-ink">
                   Subscribe
                 </h2>
                 <button
@@ -117,9 +117,9 @@ const SubscribeDrawer = () => {
               </div>
 
               {/* Content */}
-              <div className="flex-1 overflow-y-auto p-6">
+              <div className="flex-1 overflow-y-auto p-6 min-h-0">
                 {isSubmitted ? (
-                  <div className="flex flex-col items-center justify-center h-full text-center">
+                  <div className="flex flex-col items-center justify-center py-8 text-center">
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
