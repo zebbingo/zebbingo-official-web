@@ -1,16 +1,73 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
+
+interface Nationality {
+  id?: number;
+  name?: string;
+  nameZh?: string;
+  country?: string;
+  countryName?: string;
+  nationality?: string;
+  code?: string;
+  [key: string]: any;
+}
 
 const SubscribeDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [nationality, setNationality] = useState('');
+  const [nationalities, setNationalities] = useState<Nationality[]>([]);
+  const [isLoadingNationalities, setIsLoadingNationalities] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Fetch nationalities when drawer opens
+  useEffect(() => {
+    if (isOpen && nationalities.length === 0 && !isLoadingNationalities) {
+      fetchNationalities();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
+  const fetchNationalities = async () => {
+    setIsLoadingNationalities(true);
+    try {
+      const response = await fetch('https://uat.zebbie.ai/api/zebNationality/list');
+      const data = await response.json();
+      
+      // Log the response to debug
+      console.log('Nationality API response:', data);
+      
+      // Handle different response formats
+      let nationalityList: Nationality[] = [];
+      if (Array.isArray(data)) {
+        nationalityList = data;
+      } else if (data.data && Array.isArray(data.data)) {
+        nationalityList = data.data;
+      } else if (data.list && Array.isArray(data.list)) {
+        nationalityList = data.list;
+      } else if (data.result && Array.isArray(data.result)) {
+        nationalityList = data.result;
+      }
+      
+      // Log the parsed list
+      if (nationalityList.length > 0) {
+        console.log('Parsed nationality list:', nationalityList);
+        console.log('First item keys:', Object.keys(nationalityList[0]));
+      }
+      
+      setNationalities(nationalityList);
+    } catch (error) {
+      console.error('Failed to fetch nationalities:', error);
+    } finally {
+      setIsLoadingNationalities(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,23 +79,58 @@ const SubscribeDrawer = () => {
     
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Here you would typically send the data to your backend
-    // Example: await fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ name, email }) })
-    console.log('Subscribed:', { name, email });
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form and close drawer after 3 seconds (similar to reference site)
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setName('');
-      setEmail('');
-      setIsOpen(false);
-    }, 3000);
+    try {
+      // Find the selected nationality object to get nameZh
+      // The value stored is: nat.id?.toString() || nat.code || nat.value || countryName || index.toString()
+      const selectedNat = nationalities.find((nat, index) => {
+        const countryName = nat.nameZh || nat.name || nat.countryName || nat.country || nat.nationality || nat.label || '';
+        const value = nat.id?.toString() || nat.code || nat.value || countryName || index.toString();
+        return value === nationality;
+      });
+      
+      // Get nationality name (nameZh) or fallback to the selected value
+      const nationalityName = selectedNat?.nameZh || selectedNat?.name || nationality || '';
+      
+      // Prepare the request body
+      const requestBody = {
+        nationality: nationalityName,
+        name: name,
+        email: email,
+      };
+      
+      // Call the API
+      const response = await fetch('https://uat.zebbie.ai/api/zebOfficialWebsiteUserInfo/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('Subscription successful:', result);
+      
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      
+      // Reset form and close drawer after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setName('');
+        setEmail('');
+        setNationality('');
+        setIsOpen(false);
+      }, 3000);
+    } catch (error) {
+      console.error('Failed to submit subscription:', error);
+      setIsSubmitting(false);
+      // You might want to show an error message to the user here
+      alert('Failed to submit subscription. Please try again.');
+    }
   };
 
   return (
@@ -186,6 +278,39 @@ const SubscribeDrawer = () => {
                           required
                         />
                       </div>
+                      <div>
+                        <label
+                          htmlFor="nationality"
+                          className="block text-sm font-medium text-soft-ink mb-2"
+                        >
+                          Nationality
+                        </label>
+                        <select
+                          id="nationality"
+                          value={nationality}
+                          onChange={(e) => setNationality(e.target.value)}
+                          className="w-full px-4 py-3 border border-zebbingo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zebbingo-500 focus:border-transparent text-soft-ink bg-white"
+                          disabled={isLoadingNationalities}
+                        >
+                          <option value="">
+                            {isLoadingNationalities ? 'Loading...' : 'Select your nationality'}
+                          </option>
+                          {nationalities.map((nat, index) => {
+                            // Use nameZh as the primary field for country name
+                            const countryName = nat.nameZh || nat.name || nat.countryName || nat.country || nat.nationality || nat.label || '';
+                            // Use id as the primary value, fallback to code or nameZh
+                            const value = nat.id?.toString() || nat.code || nat.value || countryName || index.toString();
+                            // Use nameZh as label, fallback to other fields
+                            const label = countryName || nat.code || nat.name || nat.value || value;
+                            
+                            return (
+                              <option key={value || index} value={value}>
+                                {label}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
                       <Button
                         type="submit"
                         className="w-full mt-6"
@@ -206,4 +331,3 @@ const SubscribeDrawer = () => {
 };
 
 export default SubscribeDrawer;
-
