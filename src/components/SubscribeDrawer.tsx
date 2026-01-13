@@ -7,13 +7,13 @@ import { Button } from './ui/button';
 
 interface Nationality {
   id?: number;
-  name?: string;
+  isActive: boolean;
+  iso2?: string;
+  iso3?: string;
+  nameEn?: string;
   nameZh?: string;
-  country?: string;
-  countryName?: string;
-  nationality?: string;
-  code?: string;
-  [key: string]: any;
+  phoneCode?: string;
+  sortOrder?: number;
 }
 
 const SubscribeDrawer = () => {
@@ -39,10 +39,10 @@ const SubscribeDrawer = () => {
     try {
       const response = await fetch('https://uat.zebbie.ai/api/zebNationality/list');
       const data = await response.json();
-      
+
       // Log the response to debug
       console.log('Nationality API response:', data);
-      
+
       // Handle different response formats
       let nationalityList: Nationality[] = [];
       if (Array.isArray(data)) {
@@ -54,14 +54,21 @@ const SubscribeDrawer = () => {
       } else if (data.result && Array.isArray(data.result)) {
         nationalityList = data.result;
       }
-      
+
       // Log the parsed list
       if (nationalityList.length > 0) {
         console.log('Parsed nationality list:', nationalityList);
         console.log('First item keys:', Object.keys(nationalityList[0]));
       }
-      
-      setNationalities(nationalityList);
+
+      // Sort nationalities alphabetically by nameEn
+      const sortedNationalities = nationalityList.sort((a, b) => {
+        const nameA = (a.nameEn || a.nameZh || '').toLowerCase();
+        const nameB = (b.nameEn || b.nameZh || '').toLowerCase();
+        return nameA.localeCompare(nameB);
+      });
+
+      setNationalities(sortedNationalities);
     } catch (error) {
       console.error('Failed to fetch nationalities:', error);
     } finally {
@@ -71,33 +78,32 @@ const SubscribeDrawer = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate email
     if (!email) {
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
-      // Find the selected nationality object to get nameZh
-      // The value stored is: nat.id?.toString() || nat.code || nat.value || countryName || index.toString()
-      const selectedNat = nationalities.find((nat, index) => {
-        const countryName = nat.nameZh || nat.name || nat.countryName || nat.country || nat.nationality || nat.label || '';
-        const value = nat.id?.toString() || nat.code || nat.value || countryName || index.toString();
+      // Find the selected nationality object to get name
+      const selectedNat = nationalities.find((nat, _index) => {
+        const countryName = nat.id?.toString();
+        const value = nat.id?.toString();
         return value === nationality;
       });
-      
-      // Get nationality name (nameZh) or fallback to the selected value
-      const nationalityName = selectedNat?.nameZh || selectedNat?.name || nationality || '';
-      
+
+      // Get nationality name (nameEn) or fallback to the selected value
+      const nationalityName = selectedNat?.nameEn || nationality || '';
+
       // Prepare the request body
       const requestBody = {
         nationality: nationalityName,
         name: name,
         email: email,
       };
-      
+
       // Call the API
       const response = await fetch('https://uat.zebbie.ai/api/zebOfficialWebsiteUserInfo/submit', {
         method: 'POST',
@@ -106,17 +112,17 @@ const SubscribeDrawer = () => {
         },
         body: JSON.stringify(requestBody),
       });
-      
+
       if (!response.ok) {
         throw new Error(`API error: ${response.status}`);
       }
-      
+
       const result = await response.json();
       console.log('Subscription successful:', result);
-      
+
       setIsSubmitting(false);
       setIsSubmitted(true);
-      
+
       // Reset form and close drawer after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
@@ -142,13 +148,13 @@ const SubscribeDrawer = () => {
         whileHover={{ scale: 1.08, x: -5 }}
         whileTap={{ scale: 0.95 }}
         initial={{ x: 0 }}
-        animate={{ 
+        animate={{
           x: isOpen ? '-100%' : 0
         }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         style={{
-          boxShadow: isOpen 
-            ? 'none' 
+          boxShadow: isOpen
+            ? 'none'
             : '0 0 25px rgba(239, 68, 68, 0.6), 0 0 50px rgba(239, 68, 68, 0.4), 0 0 75px rgba(239, 68, 68, 0.2)'
         }}
         aria-label="Subscribe"
@@ -236,7 +242,7 @@ const SubscribeDrawer = () => {
                       Thank you!
                     </h3>
                     <p className="text-soft-ink/80">
-                      Your subscription has been confirmed. You'll hear from us soon.
+                      Thank you for your subscription. We will keep you posted on future events.
                     </p>
                   </div>
                 ) : (
@@ -296,13 +302,11 @@ const SubscribeDrawer = () => {
                             {isLoadingNationalities ? 'Loading...' : 'Select your nationality'}
                           </option>
                           {nationalities.map((nat, index) => {
-                            // Use nameZh as the primary field for country name
-                            const countryName = nat.nameZh || nat.name || nat.countryName || nat.country || nat.nationality || nat.label || '';
-                            // Use id as the primary value, fallback to code or nameZh
-                            const value = nat.id?.toString() || nat.code || nat.value || countryName || index.toString();
-                            // Use nameZh as label, fallback to other fields
-                            const label = countryName || nat.code || nat.name || nat.value || value;
-                            
+                            // Use name as the primary field for country name
+                            const value = nat.id?.toString() || index.toString();
+                            // Use name as label, fallback to other fields
+                            const label = nat.nameEn || value;
+
                             return (
                               <option key={value || index} value={value}>
                                 {label}
