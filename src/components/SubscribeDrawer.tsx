@@ -63,8 +63,8 @@ const SubscribeDrawer = () => {
 
       // Sort nationalities alphabetically by nameEn
       const sortedNationalities = nationalityList.sort((a, b) => {
-        const nameA = (a.nameEn || a.nameZh || '').toLowerCase();
-        const nameB = (b.nameEn || b.nameZh || '').toLowerCase();
+        const nameA = (a.nameEn || '').toLowerCase();
+        const nameB = (b.nameEn || '').toLowerCase();
         return nameA.localeCompare(nameB);
       });
 
@@ -88,8 +88,7 @@ const SubscribeDrawer = () => {
 
     try {
       // Find the selected nationality object to get name
-      const selectedNat = nationalities.find((nat, _index) => {
-        const countryName = nat.id?.toString();
+      const selectedNat = nationalities.find(nat => {
         const value = nat.id?.toString();
         return value === nationality;
       });
