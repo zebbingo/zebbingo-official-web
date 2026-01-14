@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { Button } from './ui/button';
 
 interface Nationality {
   id?: number;
@@ -18,9 +17,11 @@ interface Nationality {
 
 const SubscribeDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [nationality, setNationality] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
   const [nationalities, setNationalities] = useState<Nationality[]>([]);
   const [isLoadingNationalities, setIsLoadingNationalities] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -79,8 +80,8 @@ const SubscribeDrawer = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate email
-    if (!email) {
+    // Validate required fields
+    if (!email || !firstName || !lastName || !nationality) {
       return;
     }
 
@@ -96,12 +97,18 @@ const SubscribeDrawer = () => {
       // Get nationality name (nameEn) or fallback to the selected value
       const nationalityName = selectedNat?.nameEn || nationality || '';
 
-      // Prepare the request body
-      const requestBody = {
-        nationality: nationalityName,
-        name: name,
-        email: email,
+      // Prepare the request body (API expects PascalCase keys)
+      const requestBody: Record<string, unknown> = {
+        Email: email,
+        FirstName: firstName,
+        LastName: lastName,
+        Nationality: nationalityName,
       };
+
+      // DateOfBirth is optional – only include when user provided a value
+      if (dateOfBirth) {
+        requestBody.DateOfBirth = dateOfBirth;
+      }
 
       // Call the API
       const response = await fetch('https://uat.zebbie.ai/api/zebOfficialWebsiteUserInfo/submit', {
@@ -125,9 +132,11 @@ const SubscribeDrawer = () => {
       // Reset form and close drawer after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
-        setName('');
+        setFirstName('');
+        setLastName('');
         setEmail('');
         setNationality('');
+        setDateOfBirth('');
         setIsOpen(false);
       }, 3000);
     } catch (error) {
@@ -252,22 +261,6 @@ const SubscribeDrawer = () => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div>
                         <label
-                          htmlFor="name"
-                          className="block text-sm font-medium text-soft-ink mb-2"
-                        >
-                          Name
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          className="w-full px-4 py-3 border border-zebbingo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zebbingo-500 focus:border-transparent text-soft-ink bg-white"
-                          placeholder="Enter your name"
-                        />
-                      </div>
-                      <div>
-                        <label
                           htmlFor="email"
                           className="block text-sm font-medium text-soft-ink mb-2"
                         >
@@ -283,12 +276,48 @@ const SubscribeDrawer = () => {
                           required
                         />
                       </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label
+                            htmlFor="firstName"
+                            className="block text-sm font-medium text-soft-ink mb-2"
+                          >
+                            First Name <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="firstName"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            className="w-full px-4 py-3 border border-zebbingo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zebbingo-500 focus:border-transparent text-soft-ink bg-white"
+                            placeholder="First name"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label
+                            htmlFor="lastName"
+                            className="block text-sm font-medium text-soft-ink mb-2"
+                          >
+                            Last Name <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="lastName"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            className="w-full px-4 py-3 border border-zebbingo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zebbingo-500 focus:border-transparent text-soft-ink bg-white"
+                            placeholder="Last name"
+                            required
+                          />
+                        </div>
+                      </div>
                       <div>
                         <label
                           htmlFor="nationality"
                           className="block text-sm font-medium text-soft-ink mb-2"
                         >
-                          Nationality
+                          Nationality / Country <span className="text-red-500">*</span>
                         </label>
                         <select
                           id="nationality"
@@ -296,6 +325,7 @@ const SubscribeDrawer = () => {
                           onChange={(e) => setNationality(e.target.value)}
                           className="w-full px-4 py-3 border border-zebbingo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zebbingo-500 focus:border-transparent text-soft-ink bg-white"
                           disabled={isLoadingNationalities}
+                          required
                         >
                           <option value="">
                             {isLoadingNationalities ? 'Loading...' : 'Select your nationality'}
@@ -314,13 +344,38 @@ const SubscribeDrawer = () => {
                           })}
                         </select>
                       </div>
-                      <Button
+                      <div>
+                        <label
+                          htmlFor="dateOfBirth"
+                          className="block text-sm font-medium text-soft-ink mb-2"
+                        >
+                          Date of Birth <span className="text-gray-400 text-xs">(optional)</span>
+                        </label>
+                        <input
+                          type="date"
+                          id="dateOfBirth"
+                          lang="en-GB"
+                          value={dateOfBirth}
+                          onChange={(e) => setDateOfBirth(e.target.value)}
+                          className="w-full px-4 py-3 border border-zebbingo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zebbingo-500 focus:border-transparent text-soft-ink bg-white"
+                          placeholder="DD/MM/YYYY"
+                          title="Date format: DD/MM/YYYY"
+                        />
+                      </div>
+                      <button
                         type="submit"
-                        className="w-full mt-6"
+                        className="w-full mt-6 bg-gradient-to-b from-red-500 to-red-600 text-white px-6 py-4 rounded-xl shadow-lg hover:from-red-600 hover:to-red-700 transition-all font-display font-black text-base tracking-wide disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                         disabled={isSubmitting}
+                        style={{
+                          boxShadow: isSubmitting 
+                            ? 'none' 
+                            : '0 4px 15px rgba(239, 68, 68, 0.4), 0 0 10px rgba(239, 68, 68, 0.2)'
+                        }}
                       >
-                        {isSubmitting ? 'Processing...' : 'Subscribe'}
-                      </Button>
+                        <span className="drop-shadow-sm">
+                          {isSubmitting ? 'Processing...' : 'Subscribe'}
+                        </span>
+                      </button>
                     </form>
                   </>
                 )}
