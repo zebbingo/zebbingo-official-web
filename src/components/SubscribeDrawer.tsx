@@ -256,7 +256,7 @@ const SubscribeDrawer = () => {
                 ) : (
                   <>
                     <p className="text-soft-ink/80 mb-6">
-                      Join the mailing list for future event information
+                      Join our mailing list to receive more information
                     </p>
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div>
@@ -373,7 +373,7 @@ const SubscribeDrawer = () => {
                         }}
                       >
                         <span className="drop-shadow-sm">
-                          {isSubmitting ? 'Processing...' : 'Subscribe'}
+                          {isSubmitting ? 'Processing...' : 'Sign up for updates'}
                         </span>
                       </button>
                     </form>
