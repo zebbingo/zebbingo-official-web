@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import packageInfo from "../../package.json";
+import SubscribeDrawer from "@/components/SubscribeDrawer";
 
 export const metadata: Metadata = {
   title: 'Zebbingo | AI learning toy',
@@ -38,6 +39,7 @@ export default function RootLayout({
         <main className="flex-grow">
           {children}
         </main>
+        <SubscribeDrawer />
       </body>
     </html>
   );
