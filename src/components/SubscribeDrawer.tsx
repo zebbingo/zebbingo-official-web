@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
@@ -14,6 +15,8 @@ interface Nationality {
   phoneCode?: string;
   sortOrder?: number;
 }
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const SubscribeDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +41,10 @@ const SubscribeDrawer = () => {
   const fetchNationalities = async () => {
     setIsLoadingNationalities(true);
     try {
-      const response = await fetch('https://uat.zebbie.ai/api/zebNationality/list');
+      if (!API_BASE_URL) {
+        throw new Error('Missing NEXT_PUBLIC_API_BASE_URL');
+      }
+      const response = await fetch(`${API_BASE_URL}/zebNationality/list`);
       const data = await response.json();
 
       // Log the response to debug
@@ -116,7 +122,10 @@ const SubscribeDrawer = () => {
       }
 
       // Call the API
-      const response = await fetch('https://uat.zebbie.ai/api/zebOfficialWebsiteUserInfo/submit', {
+      if (!API_BASE_URL) {
+        throw new Error('Missing NEXT_PUBLIC_API_BASE_URL');
+      }
+      const response = await fetch(`${API_BASE_URL}/zebOfficialWebsiteUserInfo/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -211,7 +220,7 @@ const SubscribeDrawer = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="fixed right-0 top-1/2 -translate-y-1/2 max-h-[85vh] sm:max-h-[600px] h-auto w-full sm:max-w-md bg-white shadow-2xl z-40 flex flex-col rounded-l-2xl overflow-hidden"
+              className="fixed right-0 top-1/2 -translate-y-1/2 max-h-[92vh] sm:max-h-[720px] h-auto w-full sm:max-w-md bg-white shadow-2xl z-40 flex flex-col rounded-l-2xl overflow-hidden"
             >
               {/* Header */}
               <div className="flex items-center justify-between p-5 border-b border-zebbingo-100 flex-shrink-0">
@@ -381,6 +390,17 @@ const SubscribeDrawer = () => {
                           {isSubmitting ? 'Processing...' : 'Sign Up'}
                         </span>
                       </button>
+                      <p className="mt-3 text-xs text-soft-ink/70 text-center">
+                        Please see our{" "}
+                        <Link
+                          href="/privacy_policy"
+                          className="underline underline-offset-4 text-soft-ink hover:text-zebbingo-600 transition-colors"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Privacy Policy
+                        </Link>{" "}
+                        for more information about how we handle your data.
+                      </p>
                     </form>
                   </>
                 )}
