@@ -62,8 +62,13 @@ const SubscribeDrawer = () => {
         console.log('First item keys:', Object.keys(nationalityList[0]));
       }
 
-      // Sort nationalities alphabetically by nameEn
+      // Sort by sortOrder, then alphabetically by nameEn
       const sortedNationalities = nationalityList.sort((a, b) => {
+        const orderA = a.sortOrder ?? Number.POSITIVE_INFINITY;
+        const orderB = b.sortOrder ?? Number.POSITIVE_INFINITY;
+        if (orderA !== orderB) {
+          return orderA - orderB;
+        }
         const nameA = (a.nameEn || '').toLowerCase();
         const nameB = (b.nameEn || '').toLowerCase();
         return nameA.localeCompare(nameB);
@@ -167,8 +172,8 @@ const SubscribeDrawer = () => {
         }}
         aria-label="Subscribe"
       >
-        <span className="[writing-mode:vertical-rl] transform rotate-180 whitespace-nowrap drop-shadow-lg text-lg font-extrabold">
-          SUBSCRIBE
+        <span className="[writing-mode:vertical-rl] transform rotate-180 whitespace-nowrap drop-shadow-lg text-[1.75rem] font-extrabold">
+          Tell Me More
         </span>
       </motion.button>
 
@@ -183,7 +188,7 @@ const SubscribeDrawer = () => {
         }}
         aria-label="Subscribe"
       >
-        <span className="drop-shadow-lg font-extrabold">SUBSCRIBE</span>
+        <span className="drop-shadow-lg font-extrabold text-[1.5rem]">Tell Me More</span>
       </motion.button>
 
       {/* Drawer */}
@@ -211,7 +216,7 @@ const SubscribeDrawer = () => {
               {/* Header */}
               <div className="flex items-center justify-between p-5 border-b border-zebbingo-100 flex-shrink-0">
                 <h2 className="text-xl font-display font-bold text-soft-ink">
-                  Subscribe
+                  Tell Me More
                 </h2>
                 <button
                   onClick={() => setIsOpen(false)}
@@ -317,7 +322,7 @@ const SubscribeDrawer = () => {
                           htmlFor="nationality"
                           className="block text-sm font-medium text-soft-ink mb-2"
                         >
-                          Nationality / Country <span className="text-red-500">*</span>
+                          Country <span className="text-red-500">*</span>
                         </label>
                         <select
                           id="nationality"
@@ -328,7 +333,7 @@ const SubscribeDrawer = () => {
                           required
                         >
                           <option value="">
-                            {isLoadingNationalities ? 'Loading...' : 'Select your nationality'}
+                            {isLoadingNationalities ? 'Loading...' : 'Select your country'}
                           </option>
                           {nationalities.map((nat, index) => {
                             // Use name as the primary field for country name
@@ -364,7 +369,7 @@ const SubscribeDrawer = () => {
                       </div>
                       <button
                         type="submit"
-                        className="w-full mt-6 bg-gradient-to-b from-red-500 to-red-600 text-white px-6 py-4 rounded-xl shadow-lg hover:from-red-600 hover:to-red-700 transition-all font-display font-black text-base tracking-wide disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                        className="w-full mt-6 bg-gradient-to-b from-red-500 to-red-600 text-white px-6 py-4 rounded-xl shadow-lg hover:from-red-600 hover:to-red-700 transition-all font-display font-black text-[1.2rem] tracking-wide disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                         disabled={isSubmitting}
                         style={{
                           boxShadow: isSubmitting 
@@ -373,7 +378,7 @@ const SubscribeDrawer = () => {
                         }}
                       >
                         <span className="drop-shadow-sm">
-                          {isSubmitting ? 'Processing...' : 'Sign up for updates'}
+                          {isSubmitting ? 'Processing...' : 'Sign Up'}
                         </span>
                       </button>
                     </form>

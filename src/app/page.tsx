@@ -35,10 +35,10 @@ export default function Home() {
           />
         </div>
 
-        {/* 6. Main Text - Split into two paragraphs, NOT bold */}
-        <div className="mt-8 md:mt-12 text-base md:text-lg text-black leading-relaxed px-2 font-normal">
+        {/* 6. Main Text - Match CTA styling */}
+        <div className="mt-8 md:mt-12 text-[clamp(1rem,3.5vw,1.8rem)] font-bold text-black leading-relaxed px-2 text-center">
           <p>
-            Our interactive, AI-powered device nurtures curiosity, creativity and emotional intelligence through personalised storytelling that grows with every child.
+            Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures, songs and games tailored to each child&apos;s interests.
           </p>
         </div>
 
@@ -70,27 +70,29 @@ export default function Home() {
         <div className="grid grid-cols-[1.1fr_0.9fr] gap-8 items-start">
 
           {/* Left Column */}
-          <div className="flex flex-col items-start space-y-0 -mt-12">
-            {/* Top Headline */}
-            <h1 className="text-5xl font-bold text-black leading-tight tracking-tight whitespace-nowrap">
-              We&apos;re building something exciting.
-            </h1>
+          <div className="flex flex-col items-start space-y-0 -mt-12 w-full">
+            <div className="flex flex-col items-start w-full max-w-2xl">
+              {/* Top Headline */}
+              <h1 className="text-5xl font-bold text-black leading-tight tracking-tight whitespace-nowrap w-full">
+                We&apos;re building something exciting.
+              </h1>
 
-            {/* Logo Section */}
-            <div className="relative w-96 h-96 -ml-5 -mt-8 -mb-8">
-              <Image
-                src="/assets/Zebbingo_Logo_RGB.png"
-                alt="Zebbingo Logo"
-                fill
-                className="object-contain object-left"
-                priority
-              />
+              {/* Logo Section */}
+              <div className="relative w-96 h-96 -mt-8 -mb-8 self-center">
+                <Image
+                  src="/assets/Zebbingo_Logo_RGB.png"
+                  alt="Zebbingo Logo"
+                  fill
+                  className="object-contain object-center"
+                  priority
+                />
+              </div>
+
+              {/* Description */}
+              <p className="text-3xl xl:text-4xl 2xl:text-[2.5rem] font-bold leading-tight text-black tracking-tight -mt-4 text-center w-full">
+                Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures, songs and games tailored to each child&apos;s interests.
+              </p>
             </div>
-
-            {/* Description */}
-            <p className="text-3xl xl:text-4xl 2xl:text-[2.5rem] font-bold leading-tight text-black max-w-2xl tracking-tight -mt-4">
-              Our interactive, AI-powered device nurtures curiosity, creativity and emotional intelligence through personalised storytelling that grows with every child.
-            </p>
           </div>
 
           {/* Right Column - Cowboy */}
