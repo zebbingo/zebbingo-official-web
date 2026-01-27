@@ -23,13 +23,32 @@ const SignUpDrawer = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [nationality, setNationality] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [marketingOptIn, setMarketingOptIn] = useState(false);
   const [nationalities, setNationalities] = useState<Nationality[]>([]);
   const [isLoadingNationalities, setIsLoadingNationalities] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<{
+    type: 'success' | 'error';
+    message: string;
+  } | null>(null);
+
+  const closeDrawer = () => {
+    setIsOpen(false);
+    setSubmissionStatus(null);
+    setEmailError('');
+  };
+
+  const getEmailValidationMessage = (value: string) => {
+    const trimmed = value.trim();
+    if (!trimmed) {
+      return 'Email is required.';
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(trimmed) ? '' : 'Please enter a valid email address.';
+  };
 
   // Fetch nationalities when drawer opens
   useEffect(() => {
@@ -92,12 +111,20 @@ const SignUpDrawer = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const emailValidationMessage = getEmailValidationMessage(email);
+    if (emailValidationMessage) {
+      setEmailError(emailValidationMessage);
+      return;
+    }
+    setEmailError('');
+
     // Validate required fields
     if (!email || !firstName || !lastName || !nationality) {
       return;
     }
 
     setIsSubmitting(true);
+    setSubmissionStatus(null);
 
     try {
       // Find the selected nationality object to get name
@@ -140,27 +167,43 @@ const SignUpDrawer = () => {
       }
 
       const result = await response.json();
-      console.log('Subscription successful:', result);
+      console.log('Subscription response:', result);
+
+      const resultType = result?.type === 'success' ? 'success' : 'error';
+      const resultMessage =
+        typeof result?.message === 'string' && result.message.trim().length > 0
+          ? result.message
+          : resultType === 'success'
+            ? 'Thank you for your subscription. We will keep you posted on future events.'
+            : 'Something went wrong. Please try again.';
 
       setIsSubmitting(false);
-      setIsSubmitted(true);
+      setSubmissionStatus({
+        type: resultType,
+        message: resultMessage,
+      });
 
-      // Reset form and close drawer after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setNationality('');
-        setDateOfBirth('');
-        setMarketingOptIn(false);
-        setIsOpen(false);
-      }, 3000);
+      if (resultType === 'success') {
+        // Reset form and close drawer after 3 seconds
+        setTimeout(() => {
+          setSubmissionStatus(null);
+          setFirstName('');
+          setLastName('');
+          setEmail('');
+          setEmailError('');
+          setNationality('');
+          setDateOfBirth('');
+          setMarketingOptIn(false);
+          setIsOpen(false);
+        }, 3000);
+      }
     } catch (error) {
       console.error('Failed to submit subscription:', error);
       setIsSubmitting(false);
-      // You might want to show an error message to the user here
-      alert('Failed to submit subscription. Please try again.');
+      setSubmissionStatus({
+        type: 'error',
+        message: 'Failed to submit subscription. Please try again.',
+      });
     }
   };
 
@@ -168,7 +211,7 @@ const SignUpDrawer = () => {
     <>
       {/* Sign Up Button - Fixed on the right side (Desktop) */}
       <motion.button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => (isOpen ? closeDrawer() : setIsOpen(true))}
         className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-b from-red-500 to-red-600 text-white px-5 py-20 rounded-l-3xl shadow-2xl hover:from-red-600 hover:to-red-700 transition-all font-display font-black text-base tracking-widest hidden md:flex items-center justify-center border-2 border-red-400"
         whileHover={{ scale: 1.08, x: -5 }}
         whileTap={{ scale: 0.95 }}
@@ -191,7 +234,7 @@ const SignUpDrawer = () => {
 
       {/* Mobile Sign Up Button - Bottom right corner */}
       <motion.button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => (isOpen ? closeDrawer() : setIsOpen(true))}
         className="fixed bottom-6 right-6 z-40 bg-gradient-to-br from-red-500 to-red-600 text-white px-8 py-4 rounded-full shadow-2xl hover:from-red-600 hover:to-red-700 transition-all font-display font-black text-base md:hidden border-2 border-red-400"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -214,7 +257,7 @@ const SignUpDrawer = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30"
-              onClick={() => setIsOpen(false)}
+              onClick={closeDrawer}
             />
 
             {/* Drawer Panel */}
@@ -231,7 +274,7 @@ const SignUpDrawer = () => {
                   Tell Me More
                 </h2>
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={closeDrawer}
                   className="p-2 hover:bg-zebbingo-50 rounded-full transition-colors text-soft-ink hover:text-zebbingo-600"
                   aria-label="Close drawer"
                 >
@@ -241,34 +284,37 @@ const SignUpDrawer = () => {
 
               {/* Content */}
               <div className="flex-1 overflow-y-auto p-6 min-h-0">
-                {isSubmitted ? (
+                {submissionStatus ? (
                   <div className="flex flex-col items-center justify-center py-8 text-center">
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                      className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4"
+                      className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 ${
+                        submissionStatus.type === 'success'
+                          ? 'bg-green-100'
+                          : 'bg-red-100'
+                      }`}
                     >
-                      <svg
-                        className="w-8 h-8 text-green-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                      {submissionStatus.type === 'success' ? (
+                        <svg
+                          className="w-8 h-8 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      ) : (
+                        <X className="w-8 h-8 text-red-600" />
+                      )}
                     </motion.div>
-                    <h3 className="text-xl font-display font-bold text-soft-ink mb-2">
-                      Thank you!
-                    </h3>
-                    <p className="text-soft-ink/80">
-                      Thank you for your subscription. We will keep you posted on future events.
-                    </p>
+                    <p className="text-soft-ink/80">{submissionStatus.message}</p>
                   </div>
                 ) : (
                   <>
@@ -287,11 +333,29 @@ const SignUpDrawer = () => {
                           type="email"
                           id="email"
                           value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="w-full px-4 py-3 border border-zebbingo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zebbingo-500 focus:border-transparent text-soft-ink bg-white"
+                          onChange={(e) => {
+                            const nextEmail = e.target.value;
+                            setEmail(nextEmail);
+                            if (emailError) {
+                              setEmailError(getEmailValidationMessage(nextEmail));
+                            }
+                          }}
+                          onBlur={() => setEmailError(getEmailValidationMessage(email))}
+                          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent text-soft-ink bg-white ${
+                            emailError
+                              ? 'border-red-400 focus:ring-red-500'
+                              : 'border-zebbingo-200 focus:ring-zebbingo-500'
+                          }`}
                           placeholder="Enter your email"
+                          aria-invalid={emailError ? 'true' : 'false'}
+                          aria-describedby={emailError ? 'email-error' : undefined}
                           required
                         />
+                        {emailError && (
+                          <p id="email-error" className="mt-2 text-xs text-red-600">
+                            {emailError}
+                          </p>
+                        )}
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div>
@@ -413,7 +477,7 @@ const SignUpDrawer = () => {
                         <Link
                           href="/privacy_policy"
                           className="underline underline-offset-4 text-soft-ink hover:text-zebbingo-600 transition-colors"
-                          onClick={() => setIsOpen(false)}
+                          onClick={closeDrawer}
                         >
                           Privacy Policy
                         </Link>{" "}
