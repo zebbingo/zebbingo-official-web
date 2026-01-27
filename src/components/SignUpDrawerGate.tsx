@@ -1,16 +1,16 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import SubscribeDrawer from '@/components/SubscribeDrawer';
+import SignUpDrawer from '@/components/SignUpDrawer';
 
-const SubscribeDrawerGate = () => {
+const SignUpDrawerGate = () => {
   const pathname = usePathname();
 
   if (pathname === '/privacy_policy') {
     return null;
   }
 
-  return <SubscribeDrawer />;
+  return <SignUpDrawer />;
 };
 
-export default SubscribeDrawerGate;
+export default SignUpDrawerGate;

@@ -18,13 +18,14 @@ interface Nationality {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-const SubscribeDrawer = () => {
+const SignUpDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [nationality, setNationality] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
+  const [marketingOptIn, setMarketingOptIn] = useState(false);
   const [nationalities, setNationalities] = useState<Nationality[]>([]);
   const [isLoadingNationalities, setIsLoadingNationalities] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -114,6 +115,7 @@ const SubscribeDrawer = () => {
         FirstName: firstName,
         LastName: lastName,
         Nationality: nationalityName,
+        MarketingOptIn: marketingOptIn,
       };
 
       // DateOfBirth is optional – only include when user provided a value
@@ -151,6 +153,7 @@ const SubscribeDrawer = () => {
         setEmail('');
         setNationality('');
         setDateOfBirth('');
+        setMarketingOptIn(false);
         setIsOpen(false);
       }, 3000);
     } catch (error) {
@@ -163,7 +166,7 @@ const SubscribeDrawer = () => {
 
   return (
     <>
-      {/* Subscribe Button - Fixed on the right side (Desktop) */}
+      {/* Sign Up Button - Fixed on the right side (Desktop) */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-b from-red-500 to-red-600 text-white px-5 py-20 rounded-l-3xl shadow-2xl hover:from-red-600 hover:to-red-700 transition-all font-display font-black text-base tracking-widest hidden md:flex items-center justify-center border-2 border-red-400"
@@ -179,14 +182,14 @@ const SubscribeDrawer = () => {
             ? 'none'
             : '0 0 25px rgba(239, 68, 68, 0.6), 0 0 50px rgba(239, 68, 68, 0.4), 0 0 75px rgba(239, 68, 68, 0.2)'
         }}
-        aria-label="Subscribe"
+        aria-label="SignUp"
       >
         <span className="[writing-mode:vertical-rl] transform rotate-180 whitespace-nowrap drop-shadow-lg text-[1.75rem] font-extrabold">
           Tell Me More
         </span>
       </motion.button>
 
-      {/* Mobile Subscribe Button - Bottom right corner */}
+      {/* Mobile Sign Up Button - Bottom right corner */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-40 bg-gradient-to-br from-red-500 to-red-600 text-white px-8 py-4 rounded-full shadow-2xl hover:from-red-600 hover:to-red-700 transition-all font-display font-black text-base md:hidden border-2 border-red-400"
@@ -195,7 +198,7 @@ const SubscribeDrawer = () => {
         style={{
           boxShadow: '0 0 25px rgba(239, 68, 68, 0.6), 0 0 50px rgba(239, 68, 68, 0.4), 0 0 75px rgba(239, 68, 68, 0.2)'
         }}
-        aria-label="Subscribe"
+        aria-label="SignUp"
       >
         <span className="drop-shadow-lg font-extrabold text-[1.5rem]">Tell Me More</span>
       </motion.button>
@@ -376,6 +379,21 @@ const SubscribeDrawer = () => {
                           title="Date format: DD/MM/YYYY"
                         />
                       </div>
+                      <div className="flex items-start gap-3 px-4 py-3">
+                        <input
+                          type="checkbox"
+                          id="marketingOptIn"
+                          checked={marketingOptIn}
+                          onChange={(e) => setMarketingOptIn(e.target.checked)}
+                          className="mt-1 h-4 w-4 text-zebbingo-600 focus:ring-2 focus:ring-zebbingo-500"
+                        />
+                        <label
+                          htmlFor="marketingOptIn"
+                          className="text-sm text-soft-ink/90"
+                        >
+                          I agree to receive emails about updates and new products.
+                        </label>
+                      </div>
                       <button
                         type="submit"
                         className="w-full mt-6 bg-gradient-to-b from-red-500 to-red-600 text-white px-6 py-4 rounded-xl shadow-lg hover:from-red-600 hover:to-red-700 transition-all font-display font-black text-[1.2rem] tracking-wide disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
@@ -413,4 +431,4 @@ const SubscribeDrawer = () => {
   );
 };
 
-export default SubscribeDrawer;
+export default SignUpDrawer;
