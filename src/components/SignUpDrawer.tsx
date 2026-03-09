@@ -432,16 +432,28 @@ const SignUpDrawer = () => {
                         >
                           Date of Birth <span className="text-gray-400 text-xs">(optional)</span>
                         </label>
-                        <input
-                          type="date"
-                          id="dateOfBirth"
-                          lang="en-GB"
-                          value={dateOfBirth}
-                          onChange={(e) => setDateOfBirth(e.target.value)}
-                          className="w-full px-4 py-3 border border-zebbingo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zebbingo-500 focus:border-transparent text-soft-ink bg-white"
-                          placeholder="DD/MM/YYYY"
-                          title="Date format: DD/MM/YYYY"
-                        />
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="date"
+                            id="dateOfBirth"
+                            lang="en-GB"
+                            value={dateOfBirth}
+                            onChange={(e) => setDateOfBirth(e.target.value)}
+                            className="w-full px-4 py-3 border border-zebbingo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zebbingo-500 focus:border-transparent text-soft-ink bg-white"
+                            placeholder="DD/MM/YYYY"
+                            title="Date format: DD/MM/YYYY"
+                          />
+                          {dateOfBirth && (
+                            <button
+                              type="button"
+                              onClick={() => setDateOfBirth('')}
+                              className="shrink-0 px-3 py-2 text-sm border border-zebbingo-200 rounded-lg text-soft-ink hover:bg-zebbingo-50"
+                              aria-label="Clear date of birth"
+                            >
+                              Clear
+                            </button>
+                          )}
+                        </div>
                       </div>
                       <div className="flex items-start gap-3 px-4 py-3">
                         <input
