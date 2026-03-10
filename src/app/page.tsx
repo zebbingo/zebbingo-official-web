@@ -45,17 +45,14 @@ export default function Home() {
 
         {/* Safety CTA */}
         <div className="mt-6 md:mt-8 w-full text-[clamp(0.95rem,3vw,1.2rem)] font-semibold text-black">
-          <p>
-            Zebbingo’s top priority is child safety - read more about the safety features built within Zebbingo.
-          </p>
-          <div className="mt-1 text-right">
-            <Link
-              href="/safety"
-              className="text-[0.8em] font-medium text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
-            >
-              Tell Me More
-            </Link>
-          </div>
+          Zebbingo’s top priority is child safety - read more about the safety features built within Zebbingo{" "}
+          <Link
+            href="/safety"
+            className="text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
+          >
+            here
+          </Link>
+          .
         </div>
 
         {/* 7. CTA - Single line, Bold */}
