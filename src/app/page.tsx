@@ -44,13 +44,15 @@ export default function Home() {
         </div>
 
         {/* Safety CTA */}
-        <div className="mt-6 md:mt-8 w-full">
+        <div className="mt-6 md:mt-8 w-full text-[clamp(0.95rem,3vw,1.2rem)] font-semibold text-black">
+          Zebbingo’s top priority is child safety - read more about the safety features built within Zebbingo{" "}
           <Link
             href="/safety"
-            className="inline-block text-[clamp(0.95rem,3vw,1.2rem)] font-semibold text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
+            className="text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
           >
-            Zebbingo’s top priority is child safety. Read more about the safety features built into Zebbingo here.
+            here
           </Link>
+          .
         </div>
 
         {/* 7. CTA - Single line, Bold */}
@@ -104,13 +106,15 @@ export default function Home() {
                 Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures, songs and games tailored to each child&apos;s interests.
               </p>
 
-              <div className="mt-6 w-full text-center">
+              <div className="mt-6 w-full text-center text-xl xl:text-2xl font-semibold text-black">
+                Zebbingo’s top priority is child safety - read more about the safety features built within Zebbingo{" "}
                 <Link
                   href="/safety"
-                  className="text-xl xl:text-2xl font-semibold text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
+                  className="text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
                 >
-                  Zebbingo’s top priority is child safety. Read more about the safety features built into Zebbingo here.
+                  here
                 </Link>
+                .
               </div>
             </div>
           </div>
