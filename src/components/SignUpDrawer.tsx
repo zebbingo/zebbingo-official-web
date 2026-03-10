@@ -232,18 +232,27 @@ const SignUpDrawer = () => {
         </span>
       </motion.button>
 
-      {/* Mobile Sign Up Button - Bottom right corner */}
+      {/* Mobile Sign Up Button - Right side (smaller) */}
       <motion.button
         onClick={() => (isOpen ? closeDrawer() : setIsOpen(true))}
-        className="fixed bottom-6 right-6 z-40 bg-gradient-to-br from-red-500 to-red-600 text-white px-8 py-4 rounded-full shadow-2xl hover:from-red-600 hover:to-red-700 transition-all font-display font-black text-base md:hidden border-2 border-red-400"
-        whileHover={{ scale: 1.1 }}
+        className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-b from-red-500 to-red-600 text-white px-2 py-10 rounded-l-2xl shadow-2xl hover:from-red-600 hover:to-red-700 transition-all font-display font-black flex items-center justify-center md:hidden border-2 border-red-400"
+        whileHover={{ scale: 1.06, x: -3 }}
         whileTap={{ scale: 0.95 }}
+        initial={{ x: 0 }}
+        animate={{
+          x: isOpen ? '-100%' : 0
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
         style={{
-          boxShadow: '0 0 25px rgba(239, 68, 68, 0.6), 0 0 50px rgba(239, 68, 68, 0.4), 0 0 75px rgba(239, 68, 68, 0.2)'
+          boxShadow: isOpen
+            ? 'none'
+            : '0 0 18px rgba(239, 68, 68, 0.5), 0 0 36px rgba(239, 68, 68, 0.35), 0 0 54px rgba(239, 68, 68, 0.2)'
         }}
         aria-label="SignUp"
       >
-        <span className="drop-shadow-lg font-extrabold text-[1.5rem]">Tell Me More</span>
+        <span className="[writing-mode:vertical-rl] transform rotate-180 whitespace-nowrap drop-shadow-lg text-[1rem] font-extrabold">
+          Tell Me More
+        </span>
       </motion.button>
 
       {/* Drawer */}

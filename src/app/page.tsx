@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -40,6 +41,18 @@ export default function Home() {
           <p>
             Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures, songs and games tailored to each child&apos;s interests.
           </p>
+        </div>
+
+        {/* Safety CTA */}
+        <div className="mt-6 md:mt-8 w-full text-[clamp(0.95rem,3vw,1.2rem)] font-semibold text-black">
+          Zebbingo’s top priority is child safety - read more about the safety features built within Zebbingo{" "}
+          <Link
+            href="/safety"
+            className="text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
+          >
+            here
+          </Link>
+          .
         </div>
 
         {/* 7. CTA - Single line, Bold */}
@@ -92,6 +105,17 @@ export default function Home() {
               <p className="text-3xl xl:text-4xl 2xl:text-[2.5rem] font-bold leading-tight text-black tracking-tight -mt-4 text-center w-full">
                 Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures, songs and games tailored to each child&apos;s interests.
               </p>
+
+              <div className="mt-6 w-full text-center text-xl xl:text-2xl font-semibold text-black">
+                Zebbingo’s top priority is child safety - read more about the safety features built within Zebbingo{" "}
+                <Link
+                  href="/safety"
+                  className="text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
+                >
+                  here
+                </Link>
+                .
+              </div>
             </div>
           </div>
 
