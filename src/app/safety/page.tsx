@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import InfoPageLayout from "@/components/InfoPageLayout";
 
 export const metadata: Metadata = {
-  title: "Safety | Zebbingo",
+  title: "Zebbingo | Safety",
   description:
     "Zebbingo Spark child safety and parental control by design.",
 };
