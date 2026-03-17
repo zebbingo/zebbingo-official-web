@@ -4,10 +4,14 @@ import packageInfo from "../../package.json";
 import SignUpDrawerGate from "@/components/SignUpDrawerGate";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.zebbingo.com'),
   title: 'Zebbingo | audio learning platform',
   description: "Zebbingo is a children's audio device which uses a range of figurines to unlock stories, songs and conversation to inform, educate and entertain.",
   icons: {
     icon: '/logo_white_backgroud.png',
+  },
+  alternates: {
+    canonical: '/',
   },
 };
 
