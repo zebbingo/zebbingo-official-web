@@ -32,8 +32,7 @@ const sections = [
         <p>No. Spark is optional.</p>
         <p>Parents can enable or disable Spark at any time through the Zebbingo app.</p>
         <p>
-          You can also choose how long transcripts are kept, delete stored conversations and
-          withdraw consent at any time.
+          You can delete stored conversations and withdraw consent at any time.
         </p>
         <p>
           If consent is withdrawn, Spark is disabled immediately and stored conversation data is
@@ -68,7 +67,8 @@ const sections = [
       <>
         <p>
           While a conversation is taking place, automated safety systems monitor what the child
-          says and how the AI responds.
+          says and how the AI responds. To ensure safety, every input and output is moderated by
+          an AI model that is independent from our fundamental one.
         </p>
         <p>
           If a topic becomes inappropriate or concerning, Spark will gently refuse to continue and
