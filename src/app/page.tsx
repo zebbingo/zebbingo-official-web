@@ -39,7 +39,7 @@ export default function Home() {
         {/* 6. Main Text - Match CTA styling */}
         <div className="mt-8 md:mt-12 text-[clamp(1rem,3.5vw,1.8rem)] font-bold text-black leading-relaxed px-2 text-center">
           <p>
-            Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures, songs and games tailored to each child&apos;s interests.
+            Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures and songs tailored to each child&apos;s interests.
           </p>
         </div>
 
@@ -103,7 +103,7 @@ export default function Home() {
 
               {/* Description */}
               <p className="text-3xl xl:text-4xl 2xl:text-[2.5rem] font-bold leading-tight text-black tracking-tight -mt-4 text-center w-full">
-                Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures, songs and games tailored to each child&apos;s interests.
+                Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures and songs tailored to each child&apos;s interests.
               </p>
 
               <div className="mt-6 w-full text-center text-xl xl:text-2xl font-semibold text-black">
