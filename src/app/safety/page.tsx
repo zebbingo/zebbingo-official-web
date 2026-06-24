@@ -105,8 +105,7 @@ const sections = [
           respond. Audio is not stored beyond what is technically necessary.
         </p>
         <p>
-          Conversation transcripts are stored for a limited period: 30 days by default, or up to
-          180 days with additional parental consent. They are used only for safety review,
+          Conversation transcripts are stored for 30 days by default. They are used only for safety review,
           reliability and story continuity.
         </p>
         <p>
