@@ -61,12 +61,38 @@ const sections = [
     ),
   },
   {
+    title: "Optional website analytics",
+    content: (
+      <>
+        <p>
+          When optional analytics is enabled, we ask for your permission before loading
+          Google Analytics. You can decline, or change your choice through Analytics
+          preferences at the bottom of the page. Declining does not affect use of the website.
+        </p>
+        <p>
+          If you allow it, Google Analytics helps us understand visits to our public pages
+          and how people find us, including links from the ICO and LinkedIn. Google processes
+          technical information about your browser and visit. We send approved campaign labels
+          and public page addresses, with unrelated query parameters and URL fragments removed.
+          We do not send information entered in our signup form to analytics.
+        </p>
+        <p>
+          We store your analytics choice in your browser until you change it or clear browser
+          storage. Analytics cookies are set only after permission; we configure a 30-day
+          expiry and remove our Google Analytics cookies when you withdraw permission.
+          Advertising storage and personalization remain disabled in this integration.
+        </p>
+      </>
+    ),
+  },
+  {
     title: "The lawful basis for processing your data",
     content: (
       <>
         <p>Under UK GDPR, we rely on the following lawful bases:</p>
         <ul className="list-disc space-y-1 pl-6">
           <li>Consent, where you have opted in to receive marketing emails</li>
+          <li>Consent, where you have allowed optional website analytics</li>
           <li>
             Legitimate interests, to operate and improve our website, provided your rights are not
             overridden
@@ -167,7 +193,7 @@ export default function PrivacyPolicyPage() {
     <InfoPageLayout
       title="Privacy Policy"
       description="This Privacy Policy explains how we collect, use and protect your personal data."
-      lastUpdated="27 January 2026"
+      lastUpdated="2 November 2026"
       sections={sections}
     />
   );

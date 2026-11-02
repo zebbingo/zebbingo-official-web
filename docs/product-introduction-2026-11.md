@@ -25,7 +25,7 @@ Source: [Henry’s November proposal](https://app.notion.com/p/4093b79ee42780f6a
 - Use original stories/songs without an unverified count of twelve. Mention a rechargeable battery without an unconfirmed runtime. Parent-app wording stays conservative. Avoid new guaranteed-safety, ICO-approval, certified-compliance or completed-testing claims without evidence.
 - Add Henry’s ICO sentence only after verifying a public report URL. Search service returned HTTP 503 during proposal and implementation preparation; no public report URL established. Do not fabricate a link. This dependency does not block homepage text.
 - Review existing Safety claims against available implementation/policy evidence. Record unresolved checks rather than silently changing policy commitments.
-- Attribution: no identifiable analytics integration in current source. PR #8 proves Vercel preview integration, not enabled analytics. Dashboard access and campaign links remain unverified. Check platform analytics and arrange UTM-tagged inbound links as a follow-up; no tracking SDK in this PR.
+- Attribution baseline: no identifiable analytics integration in the original source. PR #8 proves Vercel preview integration, not enabled analytics. Dashboard access and campaign links remain unverified. User has now authorized Google traffic attribution in this same PR; follow the analytics revision below.
 
 ## Verification and delivery
 
@@ -75,3 +75,50 @@ The user explicitly requested removal of both figurine and speaker backgrounds b
 ## Homepage cleanup revision
 
 User explicitly requested removal of duplicate old content. Remove the old coming-soon headline, Cowboy showcase, old promotional paragraphs and old adventure slogan from the rendered homepage. Retain a compact brand header, Safety navigation and signup drawer. New product copy and transparent photographs become the primary page; preserve the existing fragment URL. Verify one h1, one instance of each product section, absence of the old text/Cowboy, images and no overflow at five widths. Verification completed: production build (including TypeScript), source lint and diff check passed. Playwright at 390/768/1024/1100/1440px confirms one h1, four unique section h2 headings, no old headline/promotion/adventure slogan/Cowboy, one brand image, no horizontal overflow, both cutouts decode and new h1 appears within 151px of the top. Header Safety link navigates to /safety/. Desktop/mobile screenshots inspected.
+
+## Google traffic attribution — implementation plan
+
+User explicitly requested ICO/LinkedIn attribution and the same PR, and recalled that the existing statistics use Google. Do not create a new property or add Vercel Analytics. Current source and complete local Git history contain no Google tag; existing GA4 Measurement ID (G-…) or GTM container identity is required from the owner. All available local branches and full Git history were searched, including legacy root files; source checkout and lane .env.local/.env.production contain no Google analytics ID/key, and none of the live homepage’s 10 script bundles contain Google tag signals. Browser access could not verify the Google dashboard. The user does not remember the ID and asked for a code search; that search did not recover it. Existing dashboard identity/configuration remains unverified.
+
+GA4 integration is implemented behind `NEXT_PUBLIC_GA_MEASUREMENT_ID`; missing/invalid ID means disabled, without analytics prompts or Google requests. If the existing setup proves to be GTM, resolve its GA4 destination before configuring the direct Google tag, avoiding duplicate tags. No secrets or guessed IDs.
+
+Use Google's basic consent pattern: no Google scripts or analytics requests before explicit opt-in; allow decline and later withdrawal via Analytics preferences. Keep advertising consent denied and disable Google Signals/ad personalization. Store only the consent choice locally; retain campaign attribution only in memory. Strip URL fragments, unknown paths/query values and full referrer paths before analytics. Allow only the documented ICO campaign values. No form fields, email, DOB or user IDs enter analytics; no signup API schema changes. Preview deployments explicitly disable the integration, even if a Measurement ID is present, so reviews do not contaminate production analytics. Campaign context stays in memory; only the consent preference is stored in browser localStorage. No application-server data, databases, downloads or caches are introduced.
+
+Campaign links (hand off to publishers; do not message them):
+
+| Placement | source | medium | campaign | content |
+| --- | --- | --- | --- | --- |
+| ICO LinkedIn post | linkedin | social | ico_report | ico_linkedin_post |
+| ICO report/website | ico | referral | ico_report | ico_report |
+| Zebbingo LinkedIn post | linkedin | social | ico_report | zebbingo_linkedin_post |
+
+Use manual pageviews with `send_page_view: false`, sanitized URLs and SPA navigation handling. Disable Enhanced Measurement in the existing GA4 web stream before activation to prevent independent automatic collection/duplicate SPA pageviews. Document Reports → Acquisition → Traffic acquisition and Realtime verification; no claims of dashboard counts until verified. Untagged LinkedIn referrers cannot prove ICO authored the post. Declined/blocked visits are not measured; historical attribution cannot be recovered.
+
+Verification: red→green Node tests for campaign sanitization/referrer boundaries; source lint, build/TypeScript; browser checks for no requests before consent/after decline, opt-in initialization, route changes without duplicate pageviews, withdrawal, malformed query stripping, missing configuration, and responsive consent UI. Real property ingestion remains dependent on verified ID and dashboard access. Deliver this PR without merge or production deployment.
+
+Sources: [Google basic consent](https://developers.google.com/tag-platform/security/guides/consent?consentmode=basic), [manual pageviews](https://developers.google.com/analytics/devguides/collection/ga4/views?client_type=gtag), [campaign URL parameters](https://support.google.com/analytics/answer/10917952?hl=en), accessed 2026-11-02. No legal-compliance certification is implied.
+
+### Publisher links and activation
+
+- ICO LinkedIn: https://www.zebbingo.com/?utm_source=linkedin&utm_medium=social&utm_campaign=ico_report&utm_content=ico_linkedin_post
+- ICO report/site: https://www.zebbingo.com/safety/?utm_source=ico&utm_medium=referral&utm_campaign=ico_report&utm_content=ico_report
+- Zebbingo LinkedIn: https://www.zebbingo.com/?utm_source=linkedin&utm_medium=social&utm_campaign=ico_report&utm_content=zebbingo_linkedin_post
+
+These are approved labels, not evidence the ICO has used these URLs. They must be used in the actual external posts/report links to distinguish the placements. We have not contacted publishers or changed any external links.
+
+Activation requires the existing GA4 web stream’s Measurement ID and project-owner dashboard access. In the existing Google Analytics property, find Admin → Data streams → the www.zebbingo.com web stream; use its G-… Measurement ID. Confirm the stream’s Enhanced Measurement is disabled (not merely automatic pageviews on config) because this integration deliberately sends only sanitized manual pageviews. Confirm Google Signals/user-provided data/advertising integrations are not enabling additional collection outside this tag configuration. Do not create another property just to fill this gap.
+
+Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in the site’s Production build environment, then build/deploy through the normal human-controlled release decision after this PR is approved. A build/redeployment is required for the statically rendered layout to receive a changed ID. Do not enable tracking in Preview. No env files or Vercel production settings were changed by this task.
+
+After activation, use GA4 Realtime to verify a consented tagged test visit reaches the intended property, then Reports → Acquisition → Traffic acquisition with Session source / medium and Session campaign (`ico_report`). Use Session manual ad content/Explore to distinguish `ico_linkedin_post` from `zebbingo_linkedin_post`. Standard reports may not update immediately. Validate one pageview per SPA navigation and no requests for declined visits. Actual Google tag delivery, cookies generated by Google, property event arrival and dashboard attribution counts remain unverified until that activation check; queue tests are not a substitute.
+
+### Analytics verification and limits
+
+- `node --test tests/traffic-attribution.test.mjs`: initial target-behavior run failed 5/7 checks for missing campaign/URL/referrer sanitization; implemented behavior passes 7/7. Existing minimatch test also passes (`pnpm test`: 8/8 total).
+- Source ESLint and production build/TypeScript passed. No runtime dependency or analytics vendor package added; the existing Google tag is loaded only after opt-in.
+- Preview production build with a supplied fake test ID: rendered layout suppresses the ID, confirming Preview remains disabled. Final build repeated without any test ID.
+- Local production build without ID: no analytics prompt and no Google requests, confirmed in Playwright.
+- Isolated browser build with a clearly fake test ID and all Google script/intake URLs intercepted: no requests before consent or after decline; choice survives reload; opt-in loads one intercepted tag; homepage and Safety navigation queue exactly two sanitized manual pageviews. Email/token/query fragment are omitted, approved campaign context persists through SPA navigation.
+- Withdrawal disables the tag, removes the site’s GA cookies and reloads without reloading Google; a storage-event withdrawal is also verified. Decline/allow still works with localStorage blocked (choice then lasts for the current document only). Advertising defaults are denied.
+- Consent UI at widths 320/390/768/1024/1440: no horizontal overflow, both choices accessible; screenshots visually inspected. Privacy notice updated to describe the actual optional integration.
+- The real GA4 Measurement ID, property access, stream settings and ingestion are unavailable. PR remains Draft while this required configuration/real-delivery verification is blocked. Existing homepage/content changes are retained in this same PR. No merge, production deployment, paid plan, new analytics account, external messages or property configuration writes.
