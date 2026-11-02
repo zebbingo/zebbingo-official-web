@@ -21,7 +21,7 @@ Source: [Henry’s November proposal](https://app.notion.com/p/4093b79ee42780f6a
 
 - Updated after explicit user request “请清掉重复旧内容”: remove the old hero and duplicated mobile/desktop promotion; make the product introduction the homepage body, preceded only by a compact brand/Safety header. Preserve the existing discover-zebbingo fragment for shared preview links. One shared semantic section covers Meet the cast, How it works, Safety by design and Zip and the Stage. Preserve signup and Safety navigation. Use one h1 with correctly nested section headings.
 - Explain Stage, its three pads, stories, songs and Spark; expand Zip’s introduction. Text may mention other characters while making clear the full range is planned, without promising Kickstarter availability.
-- Updated after the user’s “没有图片” feedback on 2026-11-02: add the two supplied real photographs in this PR. Place the Kickstarter quartet below Meet the cast and the Stage photograph before the three-pad explanation. Use the supplied real photographs as the source, with backgrounds removed as explicitly requested in the latest feedback. Preserve product appearance and details. Use Next Image responsive delivery, intrinsic dimensions and descriptive alt text. Cowboy replacement remains deferred.
+- Updated after the user’s “没有图片” feedback on 2026-11-02: add the two supplied real photographs in this PR. Place the Kickstarter quartet below Meet the cast and the Stage photograph before the three-pad explanation. Use the supplied real photographs as the source, with backgrounds removed as explicitly requested in the latest feedback. Preserve product appearance and details. Use Next Image responsive delivery, intrinsic dimensions and descriptive alt text. The old homepage hero, including the Cowboy showcase, has been removed (旧首屏已移除).
 - Use original stories/songs without an unverified count of twelve. Mention a rechargeable battery without an unconfirmed runtime. Parent-app wording stays conservative. Avoid new guaranteed-safety, ICO-approval, certified-compliance or completed-testing claims without evidence.
 - Add Henry’s ICO sentence only after verifying a public report URL. Search service returned HTTP 503 during proposal and implementation preparation; no public report URL established. Do not fabricate a link. This dependency does not block homepage text.
 - Review existing Safety claims against available implementation/policy evidence. Record unresolved checks rather than silently changing policy commitments.
@@ -38,7 +38,7 @@ Create plan-only Draft before implementation, finish verification, then convert 
 - Public ICO report URL. Sentence: “To develop these principles, we have participated in the ICO’s Regulatory Sandbox. Their report is here.” Place immediately below the Safety subtitle once verified.
 - Confirm battery runtime, per-character content counts, included Zip bundle and parent-app controls.
 - Safety currently promises 30-day transcript retention, deletion within 24 hours after consent withdrawal, UK hosting, session review and parental controls. Policy/implementation-owner confirmation required before changing these claims.
-- Confirm launch-character names/availability; Guo Yu’s better speaker photo can replace the supplied fallback later. Background removal is now in scope; Cowboy replacement remains a follow-up.
+- Confirm launch-character names/availability; Guo Yu’s better speaker photo can replace the supplied fallback later.
 - Human review of preview including Henry’s copy feedback before publication.
 
 ## Safety review findings
