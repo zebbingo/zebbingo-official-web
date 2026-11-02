@@ -4,8 +4,13 @@ import ProductIntroduction from "@/components/ProductIntroduction";
 
 export default function Home() {
   return (
-    <>
-      <header className="bg-white px-6 pr-16 pt-8 md:pl-10 md:pr-28">
+    <div className="relative isolate">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.94), rgba(255,255,255,0.94)), url('/assets/background.png')" }}
+      />
+      <header className="px-6 pr-16 pt-8 md:pl-10 md:pr-28">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-6">
           <Image
             src="/assets/Zebbingo.png"
@@ -27,6 +32,6 @@ export default function Home() {
         </div>
       </header>
       <ProductIntroduction />
-    </>
+    </div>
   );
 }
