@@ -22,6 +22,19 @@ test('unapproved or incomplete campaigns are omitted rather than sending arbitra
   ]) assert.deepEqual(readCampaign(`https://www.zebbingo.com/?${query}`), {});
 });
 
+test('placement labels must match the documented source and medium', () => {
+  for (const [source, medium, content] of [
+    ['ico', 'referral', 'ico_linkedin_post'],
+    ['ico', 'referral', 'zebbingo_linkedin_post'],
+    ['linkedin', 'social', 'ico_report'],
+  ]) {
+    assert.deepEqual(readCampaign(`https://www.zebbingo.com/?utm_source=${source}&utm_medium=${medium}&utm_campaign=ico_report&utm_content=${content}`), {
+      utm_source: source, utm_medium: medium, utm_campaign: 'ico_report',
+    });
+  }
+  assert.equal(readCampaign('https://www.zebbingo.com/?utm_source=linkedin&utm_medium=social&utm_campaign=ico_report&utm_content=zebbingo_linkedin_post').utm_content, 'zebbingo_linkedin_post');
+});
+
 test('sensitive query parameters, unknown UTM content and fragments never enter page_location', () => {
   assert.equal(analyticsLocation('https://www.zebbingo.com/?email=private@example.com&token=secret&utm_source=linkedin&utm_medium=social&utm_campaign=ico_report&utm_content=private_name#secret'),
     'https://www.zebbingo.com/?utm_source=linkedin&utm_medium=social&utm_campaign=ico_report');

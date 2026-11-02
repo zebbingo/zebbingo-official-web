@@ -1,6 +1,8 @@
 const publicPaths = new Set(['/', '/safety/', '/about/', '/privacy_policy/']);
 const publisherHosts = new Set(['linkedin.com', 'www.linkedin.com', 'lnkd.in', 'ico.org.uk', 'www.ico.org.uk']);
-const placements = new Set(['ico_linkedin_post', 'zebbingo_linkedin_post', 'ico_report']);
+const placementSources = new Map([
+  ['ico_linkedin_post', 'linkedin'], ['zebbingo_linkedin_post', 'linkedin'], ['ico_report', 'ico'],
+]);
 
 /** Only approved campaign labels enter analytics; arbitrary inbound values are not trusted.
  * @param {string} href @returns {Record<string, string>}
@@ -14,7 +16,7 @@ export function readCampaign(href) {
     if (campaign !== 'ico_report' || !((source === 'linkedin' && medium === 'social') || (source === 'ico' && medium === 'referral'))) return {};
     const result = { utm_source: source, utm_medium: medium, utm_campaign: campaign };
     const content = params.get('utm_content')?.toLowerCase();
-    return content && placements.has(content) ? { ...result, utm_content: content } : result;
+    return content && placementSources.get(content) === source ? { ...result, utm_content: content } : result;
   } catch {
     return {};
   }
