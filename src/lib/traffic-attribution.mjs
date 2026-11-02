@@ -37,8 +37,10 @@ export function analyticsLocation(href, campaign = readCampaign(href)) {
   }
 }
 
-/** @param {string} referrer @returns {string} */
-export function analyticsReferrer(referrer) {
+/** @param {string} referrer @param {string | null} [previousLocation] @returns {string} */
+export function analyticsReferrer(referrer, previousLocation = null) {
+  const previous = previousLocation && analyticsLocation(previousLocation);
+  if (previous) return previous;
   try {
     const url = new URL(referrer);
     return url.protocol === 'https:' && publisherHosts.has(url.hostname) ? `${url.origin}/` : '';

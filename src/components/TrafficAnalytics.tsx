@@ -26,7 +26,7 @@ export default function TrafficAnalytics({ measurementId }: { measurementId?: st
     }
     const location = analyticsLocation(window.location.href, entry.current.campaign);
     if (location && location !== lastLocation.current) {
-      sendPageView(measurementId, location, entry.current.referrer);
+      sendPageView(measurementId, location, analyticsReferrer(entry.current.referrer, lastLocation.current));
       lastLocation.current = location;
     }
   }, [pathname, consent, configured, measurementId]);

@@ -46,3 +46,11 @@ test('referrers keep known publisher origin only, never path/query/person IDs', 
     assert.equal(analyticsReferrer(ref), '');
   }
 });
+
+test('SPA views use the sanitized preceding page instead of repeating the entry publisher', () => {
+  const entry = 'https://www.linkedin.com/posts/private-name?token=secret';
+  assert.equal(analyticsReferrer(entry, null), 'https://www.linkedin.com/');
+  assert.equal(analyticsReferrer(entry, 'https://www.zebbingo.com/?email=private@example.com#secret'), 'https://www.zebbingo.com/');
+  assert.equal(analyticsReferrer(entry, 'https://www.zebbingo.com/safety/?utm_source=ico&utm_medium=referral&utm_campaign=ico_report&token=secret'),
+    'https://www.zebbingo.com/safety/?utm_source=ico&utm_medium=referral&utm_campaign=ico_report');
+});
