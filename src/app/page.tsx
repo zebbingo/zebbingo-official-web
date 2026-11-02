@@ -1,9 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProductIntroduction from "@/components/ProductIntroduction";
 
 export default function Home() {
   return (
+    <>
     <div className="min-h-screen flex flex-col items-center justify-center p-6 lg:p-12 relative overflow-x-hidden">
+
+      <a
+        href="#discover-zebbingo"
+        className="mb-10 inline-flex rounded-full border-2 border-black px-6 py-3 font-bold transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4"
+      >
+        Discover how Zebbingo works ↓
+      </a>
 
       {/* ==================== MOBILE/TABLET LAYOUT (< 1440px) ==================== */}
       <div className="xl:hidden flex flex-col items-center w-full max-w-[600px] mx-auto text-center">
@@ -154,5 +163,7 @@ export default function Home() {
 
       </div>
     </div>
+    <ProductIntroduction />
+    </>
   );
 }
