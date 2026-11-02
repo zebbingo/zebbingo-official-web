@@ -10,6 +10,7 @@ type InfoPageSection = {
 type InfoPageLayoutProps = {
   title: string;
   description: string;
+  introduction?: ReactNode;
   lastUpdated?: string;
   sections: InfoPageSection[];
 };
@@ -17,6 +18,7 @@ type InfoPageLayoutProps = {
 export default function InfoPageLayout({
   title,
   description,
+  introduction,
   lastUpdated,
   sections,
 }: InfoPageLayoutProps) {
@@ -40,6 +42,7 @@ export default function InfoPageLayout({
           <p className="mx-auto max-w-3xl text-lg leading-relaxed text-soft-ink/80">
             {description}
           </p>
+          {introduction ? <div className="mx-auto mt-4 max-w-3xl leading-relaxed">{introduction}</div> : null}
           {lastUpdated ? (
             <p className="mt-4 text-sm font-medium uppercase tracking-[0.18em] text-zebbingo-600/80">
               Last updated: {lastUpdated}
