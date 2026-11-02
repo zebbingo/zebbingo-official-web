@@ -6,16 +6,16 @@ export default function ProductIntroduction() {
     <section
       id="discover-zebbingo"
       aria-labelledby="discover-heading"
-      className="scroll-mt-8 border-t border-black/10 bg-white px-6 pb-40 pr-16 pt-16 md:pl-10 md:pr-28 lg:pt-24"
+      className="scroll-mt-8 bg-white px-6 pb-40 pr-16 pt-10 md:pl-10 md:pr-28 lg:pt-12"
     >
       <div className="mx-auto max-w-5xl">
         <header className="mb-14 max-w-3xl">
           <p className="mb-4 text-sm font-bold uppercase tracking-widest text-sky-800">
             Discover Zebbingo
           </p>
-          <h2 id="discover-heading" className="mb-6 text-4xl font-bold leading-tight sm:text-5xl">
+          <h1 id="discover-heading" className="mb-6 text-4xl font-bold leading-tight sm:text-5xl">
             A world of imagination. A conversation away.
-          </h2>
+          </h1>
           <p className="text-xl leading-relaxed sm:text-2xl">
             Zebbingo is a screen-free speaker for children aged 5 to 11, paired
             with a cast of collectable figurines.
@@ -24,7 +24,7 @@ export default function ProductIntroduction() {
 
         <div className="space-y-12 text-lg leading-relaxed">
           <section aria-labelledby="cast-heading" className="max-w-3xl">
-            <h3 id="cast-heading" className="mb-4 text-3xl font-bold">Meet the cast</h3>
+            <h2 id="cast-heading" className="mb-4 text-3xl font-bold">Meet the cast</h2>
             <p>
               The planned cast spans history, professions, animals and fantasy.
               Meet historical characters such as Cleopatra, Shakespeare, Julius
@@ -43,7 +43,7 @@ export default function ProductIntroduction() {
           </section>
 
           <section aria-labelledby="how-heading">
-            <h3 id="how-heading" className="mb-4 text-3xl font-bold">How it works</h3>
+            <h2 id="how-heading" className="mb-4 text-3xl font-bold">How it works</h2>
             <p className="mb-6 max-w-3xl">
               When your child places a figurine on the speaker, which we call the
               Stage, it unlocks a library specific to that character, blending
@@ -60,17 +60,17 @@ export default function ProductIntroduction() {
             <ol className="grid gap-4 md:grid-cols-3">
               <li className="rounded-2xl bg-sky-50 p-6">
                 <p className="text-sm font-bold uppercase tracking-wider text-sky-800">Left-hand pad</p>
-                <h4 className="my-2 text-2xl font-bold">Listen to stories</h4>
+                <h3 className="my-2 text-2xl font-bold">Listen to stories</h3>
                 <p>Discover original stories from the character&apos;s world.</p>
               </li>
               <li className="rounded-2xl bg-amber-50 p-6">
                 <p className="text-sm font-bold uppercase tracking-wider text-amber-900">Middle pad</p>
-                <h4 className="my-2 text-2xl font-bold">Start a conversation</h4>
+                <h3 className="my-2 text-2xl font-bold">Start a conversation</h3>
                 <p>Launch Spark, an AI-enabled conversation mode, and ask the character about its world.</p>
               </li>
               <li className="rounded-2xl bg-sky-50 p-6">
                 <p className="text-sm font-bold uppercase tracking-wider text-sky-800">Right-hand pad</p>
-                <h4 className="my-2 text-2xl font-bold">Enjoy songs</h4>
+                <h3 className="my-2 text-2xl font-bold">Enjoy songs</h3>
                 <p>Explore original songs inspired by the character.</p>
               </li>
             </ol>
@@ -89,7 +89,7 @@ export default function ProductIntroduction() {
           </section>
 
           <section aria-labelledby="safety-heading" className="max-w-3xl">
-            <h3 id="safety-heading" className="mb-4 text-3xl font-bold">Safety by design</h3>
+            <h2 id="safety-heading" className="mb-4 text-3xl font-bold">Safety by design</h2>
             <p className="mb-4">
               Safety, privacy and parental control are central to how we design
               Spark. It is designed for age-appropriate conversations, with
@@ -105,7 +105,7 @@ export default function ProductIntroduction() {
           </section>
 
           <section aria-labelledby="box-heading" className="max-w-3xl space-y-4">
-            <h3 id="box-heading" className="text-3xl font-bold">Zip and the Stage</h3>
+            <h2 id="box-heading" className="text-3xl font-bold">Zip and the Stage</h2>
             <p>
               Meet Zip the Zebbingo Explorer, our company mascot. Zip is an
               inquisitive child who travels through time, meeting the other
