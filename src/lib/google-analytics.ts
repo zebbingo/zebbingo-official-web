@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    dataLayer?: unknown[][];
+    dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
     [key: `ga-disable-${string}`]: boolean | undefined;
   }
@@ -15,7 +15,11 @@ export function sendPageView(id: string, location: string, referrer: string) {
   if (!validMeasurementId(id) || target[`ga-disable-${id}`]) return;
   if (!target.gtag) {
     target.dataLayer = target.dataLayer || [];
-    target.gtag = (...args: unknown[]) => { target.dataLayer?.push(args); };
+    target.gtag = function () {
+      // Google's dispatcher requires Arguments objects; plain arrays are not gtag commands.
+      // eslint-disable-next-line prefer-rest-params
+      target.dataLayer?.push(arguments);
+    };
     target.gtag('consent', 'default', {
       analytics_storage: 'denied', ad_storage: 'denied',
       ad_user_data: 'denied', ad_personalization: 'denied',
