@@ -99,6 +99,12 @@ export default function ProductIntroduction() {
               The Stage has no screen. Children can explore stories, songs and
               conversation without social media, advertising or video recommendation loops.
             </p>
+            <p className="mb-4">
+              We participated in the ICO’s Regulatory Sandbox to explore privacy and safety by design.{' '}
+              <a href="https://ico.org.uk/media2/qf3lrg30/regulatory-sandbox-final-report-zebbingo.pdf" className="font-bold underline underline-offset-4 hover:text-sky-800">
+                Read the ICO’s report (PDF)
+              </a>.
+            </p>
             <Link href="/safety/" className="font-bold underline underline-offset-4 hover:text-sky-800">
               Read about Spark safety and parental control
             </Link>

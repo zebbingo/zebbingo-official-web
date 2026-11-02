@@ -175,3 +175,8 @@ The user supplied the exact wording “Every Stage comes with Zip the Zebbingo E
 ## Direct report link
 
 The user supplied https://ico.org.uk/media2/qf3lrg30/regulatory-sandbox-final-report-zebbingo.pdf. Safety now links directly to that URL below its subtitle. The automated request received Cloudflare HTTP 403; the link and PDF contents have not been independently verified. The requested URL is user-supplied, not inferred. Browser verification remains pending.
+
+
+## Homepage ICO report link
+
+The user accepted the proposal to place a short ICO Regulatory Sandbox sentence and direct report PDF link in the homepage Safety by design section, alongside the existing Safety page link. The Safety page retains its own link. Validate build, source lint and rendered homepage link/placement. Browser verification of the PDF destination and responsive appearance remains pending due to previously recorded access restrictions. Deliver in PR #9 without merge or production deployment.
