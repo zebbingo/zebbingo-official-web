@@ -5,7 +5,7 @@ export default function ProductIntroduction() {
     <section
       id="discover-zebbingo"
       aria-labelledby="discover-heading"
-      className="scroll-mt-8 border-t border-black/10 bg-white px-6 pb-40 pr-16 pt-16 lg:px-10 lg:pt-24"
+      className="scroll-mt-8 border-t border-black/10 bg-white px-6 pb-40 pr-16 pt-16 md:pl-10 md:pr-28 lg:pt-24"
     >
       <div className="mx-auto max-w-5xl">
         <header className="mb-14 max-w-3xl">
