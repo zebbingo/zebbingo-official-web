@@ -149,8 +149,8 @@ export default function SafetyPage() {
       introduction={
         <p>
           To develop these principles, we have participated in the ICO’s Regulatory Sandbox.{' '}
-          <a className="font-semibold underline underline-offset-4" href="https://ico.org.uk/for-organisations/advice-and-services/regulatory-sandbox/previous-participants/2026/">
-            View the ICO’s 2026 participants and reports
+          Their report is <a className="font-semibold underline underline-offset-4" href="https://ico.org.uk/media2/qf3lrg30/regulatory-sandbox-final-report-zebbingo.pdf">
+            available here (PDF)
           </a>.
         </p>
       }

@@ -23,7 +23,7 @@ Source: [Henry’s November proposal](https://app.notion.com/p/4093b79ee42780f6a
 - Explain Stage, its three pads, stories, songs and Spark; expand Zip’s introduction. Text may mention other characters while making clear the full range is planned, without promising Kickstarter availability.
 - Updated after the user’s “没有图片” feedback on 2026-11-02: add the two supplied real photographs in this PR. Place the Kickstarter quartet below Meet the cast and the Stage photograph before the three-pad explanation. Use the supplied real photographs as the source, with backgrounds removed as explicitly requested in the latest feedback. Preserve product appearance and details. Use Next Image responsive delivery, intrinsic dimensions and descriptive alt text. The old homepage hero, including the Cowboy showcase, has been removed (旧首屏已移除).
 - Use original stories/songs without an unverified count of twelve. Omit the standalone battery sentence, per Henry’s latest feedback; do not add an unconfirmed runtime. Parent-app wording stays conservative. Avoid new guaranteed-safety, ICO-approval, certified-compliance or completed-testing claims without evidence.
-- Add Henry’s ICO sentence beneath the Safety subtitle, with the user-supplied ICO 2026 participants page as an explicitly labelled interim link. Replace it with the verified Zebbingo PDF URL once available; do not fabricate a PDF address.
+- Add Henry’s ICO sentence beneath the Safety subtitle, with the user-supplied direct ICO report PDF URL. The ICO returned a Cloudflare 403 for automated access, so availability and contents must be verified in a normal browser.
 - Review existing Safety claims against available implementation/policy evidence. Record unresolved checks rather than silently changing policy commitments.
 - Attribution baseline: no identifiable analytics integration in the original source. PR #8 proves Vercel preview integration, not enabled analytics. Dashboard access and campaign links remain unverified. User has now authorized Google traffic attribution in this same PR; follow the analytics revision below.
 
@@ -35,7 +35,7 @@ Create plan-only Draft before implementation, finish verification, then convert 
 
 ## Open dependencies and deferred work
 
-- Verified direct Zebbingo ICO report PDF URL. Interim link: https://ico.org.uk/for-organisations/advice-and-services/regulatory-sandbox/previous-participants/2026/ . Sentence: “To develop these principles, we have participated in the ICO’s Regulatory Sandbox. Their report is here.” Place immediately below the Safety subtitle; update the interim link once the PDF URL is verified.
+- User-supplied direct Zebbingo ICO report PDF URL: https://ico.org.uk/media2/qf3lrg30/regulatory-sandbox-final-report-zebbingo.pdf (browser verification pending; automated access returned 403). Sentence: “To develop these principles, we have participated in the ICO’s Regulatory Sandbox. Their report is here.” Placed immediately below the Safety subtitle.
 - Confirm battery runtime, per-character content counts and parent-app controls. The user has since specified that every Stage comes with Zip.
 - Safety currently promises 30-day transcript retention, deletion within 24 hours after consent withdrawal, UK hosting, session review and parental controls. Policy/implementation-owner confirmation required before changing these claims.
 - Confirm launch-character names/availability; Guo Yu’s better speaker photo can replace the supplied fallback later.
@@ -164,9 +164,14 @@ Implementation checks: the two PNGs retain their original dimensions and exactly
 
 ## ICO report integration
 
-The user supplied the ICO 2026 previous-participants page and requested integration of the report PDF on Safety. Direct ICO access returned HTTP 403, and search service returned HTTP 503; the exact PDF URL and contents could not be verified. As an interim step, link the user-supplied ICO 2026 participants page directly below the Safety subtitle, clearly identifying it as the ICO’s participants page rather than a direct PDF. Replace the link with the verified Zebbingo PDF once available. No report contents or accreditation claims inferred. ICO-domain referrer is preserved at origin only by the consent-gated analytics; PDF readers can suppress it, so attribution is incomplete and an ICO referrer cannot establish which page or document sent a visitor.
+The user supplied the ICO 2026 previous-participants page and requested integration of the report PDF on Safety. Direct ICO access returned HTTP 403, and search service returned HTTP 503; the exact PDF URL and contents could not be verified. As an interim step, link the user-supplied ICO 2026 participants page directly below the Safety subtitle, clearly identifying it as the ICO’s participants page rather than a direct PDF. The user subsequently provided the direct PDF URL; it replaces the interim link, subject to browser verification. No report contents or accreditation claims inferred. ICO-domain referrer is preserved at origin only by the consent-gated analytics; PDF readers can suppress it, so attribution is incomplete and an ICO referrer cannot establish which page or document sent a visitor.
 
 
 ## Zip copy revision
 
-The user supplied the exact wording “Every Stage comes with Zip the Zebbingo Explorer…” including Zip introducing the characters and explaining the safety approach. This explicit product instruction supersedes the earlier conservative omission of a Zip bundle statement. The ICO participants-page link remains in Safety as an interim entry while the direct report PDF URL remains unverified (ICO returned 403 on a fresh attempt); no report URL is invented.
+The user supplied the exact wording “Every Stage comes with Zip the Zebbingo Explorer…” including Zip introducing the characters and explaining the safety approach. This explicit product instruction supersedes the earlier conservative omission of a Zip bundle statement. The ICO participants-page link was an interim entry; the user has since supplied the direct report PDF URL.
+
+
+## Direct report link
+
+The user supplied https://ico.org.uk/media2/qf3lrg30/regulatory-sandbox-final-report-zebbingo.pdf. Safety now links directly to that URL below its subtitle. The automated request received Cloudflare HTTP 403; the link and PDF contents have not been independently verified. The requested URL is user-supplied, not inferred. Browser verification remains pending.
