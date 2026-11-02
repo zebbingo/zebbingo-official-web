@@ -19,7 +19,7 @@ Source: [Henry’s November proposal](https://app.notion.com/p/4093b79ee42780f6a
 
 ## Plan and acceptance
 
-- Add a scrollable product introduction below the existing hero and a visible anchor on mobile and desktop. One shared semantic section covers Meet the cast, How it works, Safety by design and What’s in the box. Preserve signup and Safety navigation.
+- Add a scrollable product introduction below the existing hero and a visible anchor on mobile and desktop. One shared semantic section covers Meet the cast, How it works, Safety by design and Zip and the Stage. Preserve signup and Safety navigation.
 - Explain Stage, its three pads, stories, songs and Spark; expand Zip’s introduction. Text may mention other characters while making clear the full range is planned, without promising Kickstarter availability.
 - Updated after the user’s “没有图片” feedback on 2026-11-02: add the two supplied real photographs in this PR. Place the Kickstarter quartet below Meet the cast and the Stage photograph before the three-pad explanation. Preserve the original photos, including backgrounds, without AI-generated alterations. Use Next Image responsive delivery, intrinsic dimensions and descriptive alt text. Cowboy replacement and background removal remain deferred.
 - Use original stories/songs without an unverified count of twelve. Mention a rechargeable battery without an unconfirmed runtime. Parent-app wording stays conservative. Avoid new guaranteed-safety, ICO-approval, certified-compliance or completed-testing claims without evidence.
@@ -65,3 +65,5 @@ Current-head hosted preview and review evidence will be recorded in the PR, avoi
 ## Product photos revision
 
 User feedback “没有图片” authorizes adding the supplied figurine and speaker photographs to the same PR. Original JPEGs are publication assets in `public/assets/`; Next Image optimizes delivery without redrawing the products. Browser verification must confirm both photos load, retain aspect ratio and stay clear of the floating signup tab at the five previously checked widths. Photo verification completed: production build, source ESLint, TypeScript and diff check passed. Playwright decoded both photos at widths 390/768/1024/1100/1440; no horizontal overflow, aspect ratios preserved and both image edges at least 15px left of the signup tab. Desktop figurine and mobile speaker screenshots visually inspected; products are fully visible. Static JPEGs are the supplied originals; no new runtime persistence or downloads.
+
+Photo-revision review also identified an implied Zip bundle promise in the inherited “What’s in the box” heading. Renamed it “Zip and the Stage” until actual package contents are confirmed; this preserves the agreed no-bundle-guarantee boundary.

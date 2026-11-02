@@ -105,7 +105,7 @@ export default function ProductIntroduction() {
           </section>
 
           <section aria-labelledby="box-heading" className="max-w-3xl space-y-4">
-            <h3 id="box-heading" className="text-3xl font-bold">What&apos;s in the box</h3>
+            <h3 id="box-heading" className="text-3xl font-bold">Zip and the Stage</h3>
             <p>
               Meet Zip the Zebbingo Explorer, our company mascot. Zip is an
               inquisitive child who travels through time, meeting the other
