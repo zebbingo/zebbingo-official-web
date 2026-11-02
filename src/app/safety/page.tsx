@@ -146,6 +146,14 @@ export default function SafetyPage() {
     <InfoPageLayout
       title="Spark Child Safety and Parental Control by Design"
       description="Clear principles for how Spark keeps children safe while parents stay in control."
+      introduction={
+        <p>
+          To develop these principles, we have participated in the ICO’s Regulatory Sandbox.{' '}
+          Their report is <a className="font-semibold underline underline-offset-4" href="https://ico.org.uk/media2/qf3lrg30/regulatory-sandbox-final-report-zebbingo.pdf">
+            available here (PDF)
+          </a>.
+        </p>
+      }
       sections={sections}
     />
   );

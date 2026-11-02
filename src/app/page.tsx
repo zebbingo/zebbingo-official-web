@@ -1,158 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProductIntroduction from "@/components/ProductIntroduction";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 lg:p-12 relative overflow-x-hidden">
-
-      {/* ==================== MOBILE/TABLET LAYOUT (< 1440px) ==================== */}
-      <div className="xl:hidden flex flex-col items-center w-full max-w-[600px] mx-auto text-center">
-
-        {/* 1. Logo - Spanning nearly whole width */}
-        <div className="relative w-[90%] aspect-square max-h-[300px] -my-10">
+    <div className="relative isolate">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.94), rgba(255,255,255,0.94)), url('/assets/background.png')" }}
+      />
+      <header className="px-6 pr-16 pt-8 md:pl-10 md:pr-28">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-6">
           <Image
-            src="/assets/Zebbingo_Logo_RGB.png"
-            alt="Zebbingo Logo"
-            fill
-            className="object-contain"
+            src="/assets/Zebbingo.png"
+            alt="Zebbingo"
+            width={730}
+            height={160}
+            sizes="160px"
+            className="h-auto w-32 sm:w-40"
             priority
           />
+          <nav aria-label="Main navigation">
+            <Link
+              href="/safety/"
+              className="font-semibold underline underline-offset-4 hover:text-sky-800"
+            >
+              Safety
+            </Link>
+          </nav>
         </div>
-
-        {/* 2. Heading - Bold, ensure single line */}
-        {/* Using clamp or responsive text to ensure it fits on one line */}
-        <h1 className="text-[clamp(1.2rem,4vw,2rem)] font-bold text-black leading-tight w-full mt-4 mb-8 md:mb-12">
-          We&apos;re building something exciting.
-        </h1>
-
-        {/* 3. Cowboy Image - Glowing */}
-        <div className="relative w-[80%] aspect-square max-w-[400px]">
-          <Image
-            src="/assets/cowboy.png"
-            alt="Zebbingo Cowboy"
-            fill
-            className="object-contain drop-shadow-[0_0_50px_rgba(255,200,50,0.8)]"
-            priority
-          />
-        </div>
-
-        {/* 6. Main Text - Match CTA styling */}
-        <div className="mt-8 md:mt-12 text-[clamp(1rem,3.5vw,1.8rem)] font-bold text-black leading-relaxed px-2 text-center">
-          <p>
-            Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures and songs tailored to each child&apos;s interests.
-          </p>
-        </div>
-
-        {/* Safety CTA */}
-        <div className="mt-6 md:mt-8 w-full text-[clamp(0.95rem,3vw,1.2rem)] font-semibold text-black">
-          Zebbingo’s top priority is child safety - read more about the safety features built within Zebbingo{" "}
-          <Link
-            href="/safety"
-            className="text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
-          >
-            here
-          </Link>
-          .
-        </div>
-
-        {/* 7. CTA - Single line, Bold */}
-        <div className="mt-8 md:mt-12 w-full">
-          <p className="text-[clamp(1rem,3.5vw,1.8rem)] font-bold text-black">
-            What will you find on your{" "}
-            <Image
-              src="/assets/Zebbingo.png"
-              alt="Zebbingo"
-              width={160}
-              height={40}
-              className="inline-block align-[-0.125em] translate-y-[2px]"
-              style={{ width: "auto", height: "1em" }}
-              sizes="160px"
-            />{" "}
-            adventure?
-          </p>
-        </div>
-
-      </div>
-
-
-      {/* ==================== DESKTOP LAYOUT (>= 1440px) ==================== */}
-      {/* This preserves the original layout that was confirmed as "fine" */}
-      <div className="hidden xl:flex w-full max-w-[1400px] flex-col gap-10">
-
-        {/* Content Grid */}
-        <div className="grid grid-cols-[1.1fr_0.9fr] gap-8 items-start">
-
-          {/* Left Column */}
-          <div className="flex flex-col items-start space-y-0 -mt-12 w-full">
-            <div className="flex flex-col items-start w-full max-w-2xl">
-              {/* Top Headline */}
-              <h1 className="text-5xl font-bold text-black leading-tight tracking-tight whitespace-nowrap w-full">
-                We&apos;re building something exciting.
-              </h1>
-
-              {/* Logo Section */}
-              <div className="relative w-96 h-96 -mt-8 -mb-8 self-center">
-                <Image
-                  src="/assets/Zebbingo_Logo_RGB.png"
-                  alt="Zebbingo Logo"
-                  fill
-                  className="object-contain object-center"
-                  priority
-                />
-              </div>
-
-              {/* Description */}
-              <p className="text-3xl xl:text-4xl 2xl:text-[2.5rem] font-bold leading-tight text-black tracking-tight -mt-4 text-center w-full">
-                Our interactive, AI-enabled device nurtures curiosity, creativity and emotional intelligence through storytelling, adventures and songs tailored to each child&apos;s interests.
-              </p>
-
-              <div className="mt-6 w-full text-center text-xl xl:text-2xl font-semibold text-black">
-                Zebbingo’s top priority is child safety - read more about the safety features built within Zebbingo{" "}
-                <Link
-                  href="/safety"
-                  className="text-zebbingo-700 hover:text-zebbingo-800 underline underline-offset-4"
-                >
-                  here
-                </Link>
-                .
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Cowboy */}
-          <div className="flex justify-end relative items-center h-full pointer-events-none">
-            <div className="relative w-[680px] h-[680px] -mr-20 -mt-20">
-              {/* Cowboy Image with Glow */}
-              <Image
-                src="/assets/cowboy.png"
-                alt="Zebbingo Cowboy"
-                fill
-                className="object-contain drop-shadow-[0_0_70px_rgba(255,200,50,0.95)]"
-                priority
-              />
-            </div>
-          </div>
-
-        </div>
-
-        {/* Bottom Text */}
-        <div className="mt-8 flex justify-end pr-20 relative z-10">
-          <p className="text-3xl xl:text-4xl 2xl:text-[2.5rem] font-bold text-black text-right tracking-tight">
-            What will you find on your{" "}
-            <Image
-              src="/assets/Zebbingo.png"
-              alt="Zebbingo"
-              width={220}
-              height={56}
-              className="inline-block align-[-0.125em] translate-y-[5px]"
-              style={{ width: "auto", height: "1em" }}
-              sizes="220px"
-            />{" "}
-            adventure?
-          </p>
-        </div>
-
-      </div>
+      </header>
+      <ProductIntroduction />
     </div>
   );
 }

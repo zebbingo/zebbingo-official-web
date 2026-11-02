@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import packageInfo from "../../package.json";
 import SignUpDrawerGate from "@/components/SignUpDrawerGate";
+import TrafficAnalytics from "@/components/TrafficAnalytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.zebbingo.com'),
@@ -44,6 +45,7 @@ export default function RootLayout({
           {children}
         </main>
         <SignUpDrawerGate />
+        <TrafficAnalytics measurementId={process.env.VERCEL_ENV === 'preview' ? undefined : process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
       </body>
     </html>
   );
