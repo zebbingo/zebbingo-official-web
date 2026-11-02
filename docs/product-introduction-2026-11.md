@@ -36,7 +36,7 @@ Create plan-only Draft before implementation, finish verification, then convert 
 ## Open dependencies and deferred work
 
 - Verified direct Zebbingo ICO report PDF URL. Interim link: https://ico.org.uk/for-organisations/advice-and-services/regulatory-sandbox/previous-participants/2026/ . Sentence: “To develop these principles, we have participated in the ICO’s Regulatory Sandbox. Their report is here.” Place immediately below the Safety subtitle; update the interim link once the PDF URL is verified.
-- Confirm battery runtime, per-character content counts, included Zip bundle and parent-app controls.
+- Confirm battery runtime, per-character content counts and parent-app controls. The user has since specified that every Stage comes with Zip.
 - Safety currently promises 30-day transcript retention, deletion within 24 hours after consent withdrawal, UK hosting, session review and parental controls. Policy/implementation-owner confirmation required before changing these claims.
 - Confirm launch-character names/availability; Guo Yu’s better speaker photo can replace the supplied fallback later.
 - Human review of preview including Henry’s copy feedback before publication.
@@ -165,3 +165,8 @@ Implementation checks: the two PNGs retain their original dimensions and exactly
 ## ICO report integration
 
 The user supplied the ICO 2026 previous-participants page and requested integration of the report PDF on Safety. Direct ICO access returned HTTP 403, and search service returned HTTP 503; the exact PDF URL and contents could not be verified. As an interim step, link the user-supplied ICO 2026 participants page directly below the Safety subtitle, clearly identifying it as the ICO’s participants page rather than a direct PDF. Replace the link with the verified Zebbingo PDF once available. No report contents or accreditation claims inferred. ICO-domain referrer is preserved at origin only by the consent-gated analytics; PDF readers can suppress it, so attribution is incomplete and an ICO referrer cannot establish which page or document sent a visitor.
+
+
+## Zip copy revision
+
+The user supplied the exact wording “Every Stage comes with Zip the Zebbingo Explorer…” including Zip introducing the characters and explaining the safety approach. This explicit product instruction supersedes the earlier conservative omission of a Zip bundle statement. The ICO participants-page link remains in Safety as an interim entry while the direct report PDF URL remains unverified (ICO returned 403 on a fresh attempt); no report URL is invented.

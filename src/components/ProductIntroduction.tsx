@@ -107,9 +107,9 @@ export default function ProductIntroduction() {
           <section aria-labelledby="box-heading" className="max-w-3xl space-y-4">
             <h2 id="box-heading" className="text-[1.625rem] font-bold sm:text-[1.75rem] lg:text-3xl">Zip and the Stage</h2>
             <p>
-              Meet Zip the Zebbingo Explorer, our company mascot. Zip is an
-              inquisitive child who travels through time, meeting the other
-              characters and introducing them to your child.
+              Every Stage comes with Zip the Zebbingo Explorer, our company mascot.
+              Zip is an inquisitive child who travels through time, encountering all
+              the other characters, introducing them and explaining our approach to safety.
             </p>
             <p>
               The parent app helps you set up and manage your Stage, and gives you
