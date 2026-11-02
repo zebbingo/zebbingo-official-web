@@ -21,7 +21,7 @@ Source: [Henry’s November proposal](https://app.notion.com/p/4093b79ee42780f6a
 
 - Add a scrollable product introduction below the existing hero and a visible anchor on mobile and desktop. One shared semantic section covers Meet the cast, How it works, Safety by design and What’s in the box. Preserve signup and Safety navigation.
 - Explain Stage, its three pads, stories, songs and Spark; expand Zip’s introduction. Text may mention other characters while making clear the full range is planned, without promising Kickstarter availability.
-- Publish text first without empty image placeholders. Future imagery shows only the Kickstarter quartet; use real photos or approved renders, avoiding AI-confected product images. Cowboy replacement with T Rex/Julius Caesar and background removal are deferred.
+- Updated after the user’s “没有图片” feedback on 2026-11-02: add the two supplied real photographs in this PR. Place the Kickstarter quartet below Meet the cast and the Stage photograph before the three-pad explanation. Preserve the original photos, including backgrounds, without AI-generated alterations. Use Next Image responsive delivery, intrinsic dimensions and descriptive alt text. Cowboy replacement and background removal remain deferred.
 - Use original stories/songs without an unverified count of twelve. Mention a rechargeable battery without an unconfirmed runtime. Parent-app wording stays conservative. Avoid new guaranteed-safety, ICO-approval, certified-compliance or completed-testing claims without evidence.
 - Add Henry’s ICO sentence only after verifying a public report URL. Search service returned HTTP 503 during proposal and implementation preparation; no public report URL established. Do not fabricate a link. This dependency does not block homepage text.
 - Review existing Safety claims against available implementation/policy evidence. Record unresolved checks rather than silently changing policy commitments.
@@ -38,7 +38,7 @@ Create plan-only Draft before implementation, finish verification, then convert 
 - Public ICO report URL. Sentence: “To develop these principles, we have participated in the ICO’s Regulatory Sandbox. Their report is here.” Place immediately below the Safety subtitle once verified.
 - Confirm battery runtime, per-character content counts, included Zip bundle and parent-app controls.
 - Safety currently promises 30-day transcript retention, deletion within 24 hours after consent withdrawal, UK hosting, session review and parental controls. Policy/implementation-owner confirmation required before changing these claims.
-- Confirm launch-character names/availability; choose real photos (Guo Yu’s speaker photo preferred), background removal and later Cowboy replacement.
+- Confirm launch-character names/availability; Guo Yu’s better speaker photo can replace the supplied fallback later. Background removal and Cowboy replacement remain follow-ups.
 - Human review of preview including Henry’s copy feedback before publication.
 
 ## Safety review findings
@@ -58,6 +58,10 @@ Plan-only commit `ee358ec` created [Draft PR #9](https://github.com/zebbingo/zeb
 - Playwright against the production build on 127.0.0.1:33019: mobile 390×844 and desktop 1440×1000, no horizontal overflow; hero anchor reaches introduction, Safety link reaches /safety/, signup drawer opens and closes. Mobile right padding reserves room for the existing floating signup tab. Codex review identified the larger desktop tab at intermediate widths; 112px right padding from 768px upward also reserves its hover footprint. Screenshots inspected locally at `/tmp/official-web-intro-mobile.png` and `/tmp/official-web-intro-desktop.png` (temporary, not durable PR assets).
 - After review fix, Playwright assertions at widths 390, 768, 1024, 1100 and 1440 passed: document width equals viewport and rightmost pad card stays at least 15px left of the signup tab. Production build and source lint passed again.
 - Signup country-list request to existing UAT API failed with ERR_CONNECTION_CLOSED; no form submitted and no claim of end-to-end signup success. No homepage errors before opening the existing drawer; image-preload warnings remain.
-- ICO public URL, dashboard analytics, policy-owner signoff and production verification remain unverified. Images are deferred by agreement. No merge or production deployment performed.
+- ICO public URL, dashboard analytics, policy-owner signoff and production verification remain unverified. The original text-only iteration was updated to include the two supplied product photographs after user feedback. No merge or production deployment performed.
 
 Current-head hosted preview and review evidence will be recorded in the PR, avoiding a new documentation-only head after review.
+
+## Product photos revision
+
+User feedback “没有图片” authorizes adding the supplied figurine and speaker photographs to the same PR. Original JPEGs are publication assets in `public/assets/`; Next Image optimizes delivery without redrawing the products. Browser verification must confirm both photos load, retain aspect ratio and stay clear of the floating signup tab at the five previously checked widths. Photo verification completed: production build, source ESLint, TypeScript and diff check passed. Playwright decoded both photos at widths 390/768/1024/1100/1440; no horizontal overflow, aspect ratios preserved and both image edges at least 15px left of the signup tab. Desktop figurine and mobile speaker screenshots visually inspected; products are fully visible. Static JPEGs are the supplied originals; no new runtime persistence or downloads.

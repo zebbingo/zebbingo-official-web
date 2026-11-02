@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function ProductIntroduction() {
   return (
@@ -31,6 +32,14 @@ export default function ProductIntroduction() {
               firefighter and astronaut; or let a puppy, a T Rex, a cat, a
               fairytale princess or a unicorn spark your child&apos;s imagination.
             </p>
+            <Image
+              src="/assets/kickstarter-figurines.jpg"
+              alt="Four Zebbingo figurines: an explorer in a white suit, a doctor, Julius Caesar and a blue T Rex"
+              width={3357}
+              height={2164}
+              sizes="(min-width: 912px) 768px, (min-width: 768px) calc(100vw - 152px), calc(100vw - 88px)"
+              className="mt-6 h-auto w-full rounded-2xl"
+            />
           </section>
 
           <section aria-labelledby="how-heading">
@@ -40,6 +49,14 @@ export default function ProductIntroduction() {
               Stage, it unlocks a library specific to that character, blending
               education and entertainment.
             </p>
+            <Image
+              src="/assets/stage-speaker.jpg"
+              alt="The Zebbingo Stage speaker with three circular figurine pads, a yellow button and blue playback controls"
+              width={4032}
+              height={3024}
+              sizes="(min-width: 912px) 768px, (min-width: 768px) calc(100vw - 152px), calc(100vw - 88px)"
+              className="mb-6 h-auto w-full max-w-3xl rounded-2xl"
+            />
             <ol className="grid gap-4 md:grid-cols-3">
               <li className="rounded-2xl bg-sky-50 p-6">
                 <p className="text-sm font-bold uppercase tracking-wider text-sky-800">Left-hand pad</p>
