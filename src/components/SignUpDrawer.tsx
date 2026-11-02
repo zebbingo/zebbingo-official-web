@@ -50,14 +50,6 @@ const SignUpDrawer = () => {
     return emailRegex.test(trimmed) ? '' : 'Please enter a valid email address.';
   };
 
-  // Fetch nationalities when drawer opens
-  useEffect(() => {
-    if (isOpen && nationalities.length === 0 && !isLoadingNationalities) {
-      fetchNationalities();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
-
   const fetchNationalities = async () => {
     setIsLoadingNationalities(true);
     try {
@@ -107,6 +99,16 @@ const SignUpDrawer = () => {
       setIsLoadingNationalities(false);
     }
   };
+
+  // Fetch nationalities when drawer opens
+  useEffect(() => {
+    if (isOpen && nationalities.length === 0 && !isLoadingNationalities) {
+      // Preserve the loading state while the drawer starts its asynchronous request.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      fetchNationalities();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
