@@ -23,6 +23,10 @@ Plan-only commit `8929738` preceded [Draft PR #11](https://github.com/zebbingo/z
 
 For the revised `1.2.0` candidate, Node assertions confirmed the exact version and all other manifest fields unchanged; `pnpm build` passed again including TypeScript/seven static pages. `git diff --check` passed; dependency/lockfile unchanged. Hosted checks and technical review must bind the revised head.
 
+The user then required “在这个仓库里，合并前都要bump version”. Record this repository-wide execution rule in `AGENTS.md` and align `RELEASE.md`: every PR, including docs/config-only changes, bumps its version before merge; recheck against the latest target branch and increment again only if needed to stay strictly greater. This supersedes the former merge-first/version-later procedure. Keep this PR at the explicitly selected `1.2.0`, which already bumps the `1.1.3` base. This change documents the Agent's required checks; it does not claim a GitHub mechanical merge gate has been installed.
+
+Rule validation: after a fresh `git fetch origin main`, Node compared numeric version components and confirmed `1.2.0 > 1.1.3`; repository rule/release procedure references and `git diff --check` passed. This revision changes only Agent/release/task documentation, so the successful `1.2.0` production build remains applicable; current-head review/checks are refreshed after pushing the documentation.
+
 ### Image replacement — 3 November 2026
 
 User instruction in this chat: “用这两张图替换官网上的原图”, with a quartet PNG and a Stage speaker PNG. This authorizes replacing the two homepage images. Keep their supplied pixels, transparency and framing; retain existing text, alt descriptions and responsive layout. Replace the old cutout assets with `figurines.png` (1626 × 967) and `stage-speaker.png` (4032 × 3024), update their `next/image` sources and intrinsic dimensions, and use new asset URLs to avoid stale cached images. No generated imagery or background editing. Source JPEGs remain as historical source assets.

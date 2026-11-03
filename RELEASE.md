@@ -2,7 +2,9 @@
 
 Versions and tags use `x.y.z` **without a `v` prefix**.
 
-1. Update `package.json` in a short-lived PR before tagging. Keep dependencies and the lockfile unchanged for a version-only bump; the pnpm lockfile does not store the root package version.
+Every PR must bump `package.json` **before merging**, including documentation/configuration-only PRs. The version must be strictly greater than the latest target branch version at merge time. If another merged PR has taken the intended version, update it and repeat affected verification/current-head review before merging. One bump per PR suffices while that condition remains true. Default to a patch bump unless the user selects another version. This replaces the old merge-first/version-later procedure; the repository-specific Agent rule is in [AGENTS.md](AGENTS.md).
+
+1. Update `package.json` within the same short-lived PR before merge and tagging. Keep dependencies and the lockfile unchanged for a version-only bump; the pnpm lockfile does not store the root package version.
 2. Validate the manifest, build and diff; complete current-head review and checks.
 3. A human merges the PR into `main`. Main is the Vercel production branch, so merging triggers production deployment and remains a human action.
 4. Fetch the merged commit and verify its `package.json` version matches the intended tag. Confirm that tag does not exist remotely; never move or overwrite an existing version tag. Create an annotated tag at the exact merged SHA, then push only that tag:
