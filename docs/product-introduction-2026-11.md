@@ -13,6 +13,12 @@ last_verified: 2026-11-03
 
 ## Authorization and source
 
+### Version and tag follow-up — 3 November 2026
+
+The user requested “上次合并没有更新 tag。你帮我更新一下 tag，特别是package.json 里面的版本也要一起更新”. Current `package.json` and latest tag are both `1.1.3`; prepare patch version `1.1.4`, including merged PRs #9 and #10. Update only the package version and the relevant release procedure, with no dependency or lockfile changes. Create a plan-only Draft before implementation (author `hantastic3` self-author exception), validate JSON/version, production build, whitespace and current-head technical review. A human merges the version PR because main auto-deploys to Vercel Production. Then fetch the exact merged SHA, verify its manifest says `1.1.4`, check the remote tag remains absent, create/push annotated tag `1.1.4` at that SHA and read back the remote tag target; never move an existing tag. Do not create or publish a GitHub Release.
+
+Tag preflight: the repository has no tracked `.github/workflows/` deployment definitions; GitHub workflows API lists only dynamic Dependabot Updates. The only configured repository webhook listens to `repository`, not `push`. The production branch is main. Vercel documents tag-triggered deployment as an additional GitHub Actions/CLI integration ([official guide](https://vercel.com/kb/guide/can-you-deploy-based-on-tags-releases-on-vercel)); that integration is absent here. Record this release/tag boundary in `RELEASE.md` before tagging; a tag is a version marker and performs no deployment in the inspected setup. Recheck triggers if configuration changes before tag creation.
+
 ### Image replacement — 3 November 2026
 
 User instruction in this chat: “用这两张图替换官网上的原图”, with a quartet PNG and a Stage speaker PNG. This authorizes replacing the two homepage images. Keep their supplied pixels, transparency and framing; retain existing text, alt descriptions and responsive layout. Replace the old cutout assets with `figurines.png` (1626 × 967) and `stage-speaker.png` (4032 × 3024), update their `next/image` sources and intrinsic dimensions, and use new asset URLs to avoid stale cached images. No generated imagery or background editing. Source JPEGs remain as historical source assets.
