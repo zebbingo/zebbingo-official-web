@@ -14,4 +14,4 @@ Versions and tags use `x.y.z` **without a `v` prefix**.
 
 Tag/deployment boundary checked on 2026-11-03: there are no tracked deployment workflows in this repository; the GitHub workflows API lists only dynamic Dependabot Updates. The configured repository webhook listens to `repository` events, not `push`. Vercel uses the existing branch integration; its [tag deployment guide](https://vercel.com/kb/guide/can-you-deploy-based-on-tags-releases-on-vercel) requires a separate Actions/CLI setup, which is absent here. A tag in this inspected setup is a version marker and performs no deployment. Recheck this boundary before tagging if deployment configuration changes.
 
-The authorized `1.1.4` follow-up versions the merged homepage/analytics PR #9 and image replacement PR #10. See the [task plan](docs/product-introduction-2026-11.md#version-and-tag-follow-up--3-november-2026).
+The authorized `1.2.0` follow-up versions the merged homepage/analytics PR #9 and image replacement PR #10. See the [task plan](docs/product-introduction-2026-11.md#version-and-tag-follow-up--3-november-2026).
