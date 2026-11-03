@@ -6,12 +6,20 @@ status: active
 confidence: A
 owner: Han Wu
 created: 2026-11-02
-last_verified: 2026-11-02
+last_verified: 2026-11-03
 ---
 
 # Homepage product introduction
 
 ## Authorization and source
+
+### Image replacement — 3 November 2026
+
+User instruction in this chat: “用这两张图替换官网上的原图”, with a quartet PNG and a Stage speaker PNG. This authorizes replacing the two homepage images. Keep their supplied pixels, transparency and framing; retain existing text, alt descriptions and responsive layout. Replace the old cutout assets with `figurines.png` (1626 × 967) and `stage-speaker.png` (4032 × 3024), update their `next/image` sources and intrinsic dimensions, and use new asset URLs to avoid stale cached images. No generated imagery or background editing. Source JPEGs remain as historical source assets.
+
+Create a plan-only Draft before implementation; author `hantastic3` uses the HW self-author exception. Validate exact attachment hashes, intrinsic dimensions, `pnpm build`, source ESLint, whitespace and real browser rendering at desktop/mobile widths. Save browser artifacts outside the worktree. Deliver the reviewed PR and preview; production publication requires a human because main is the Vercel production branch. This request does not authorize unrelated changes.
+
+Implementation and local verification: plan-only commit `c4344e4` preceded [Draft PR #10](https://github.com/zebbingo/zebbingo-official-web/pull/10). Both replacement PNGs match their attachments byte for byte (`shasum -a 256`: figurines `46381304d836ab66d7c54d3beb59bf85c8fba622364389c6bb40fab0f90fb93d`, Stage `a0b2669186cc2fa738e6dc6e54aa5372446b52dfdc0d788bd00553035bb69e09`). `pnpm build` passed, including TypeScript and seven generated static pages; changed-component ESLint and `git diff --check` passed. In the real browser at 1440 × 1000 and 390 × 844, both optimized images loaded with the new URLs and correct aspect ratios; document width equalled viewport width, with no horizontal overflow. Full-page screenshots were visually inspected and saved outside the checkout in the chat visualization directory. Supplied framing/white space is preserved. Current-head CI/review and hosted preview remain to be checked before final delivery; no production deployment or merge.
 
 On 2026-11-02 the user accepted the chat proposal and instructed: “落入文档，然后开始实施，最后交 PR，不要合并”. Deliver a reviewable PR and preview; no merge or production publication. GitHub author is `hantastic3`, so the HW self-author exception applies to plan approval.
 
