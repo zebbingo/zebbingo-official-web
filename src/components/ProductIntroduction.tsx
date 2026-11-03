@@ -33,10 +33,10 @@ export default function ProductIntroduction() {
               fairytale princess or a unicorn spark your child’s imagination.
             </p>
             <Image
-              src="/assets/kickstarter-figurines-cutout.png"
+              src="/assets/figurines.png"
               alt="Four Zebbingo figurines: an explorer in a white suit, a doctor, Julius Caesar and a blue T Rex"
-              width={3020}
-              height={1612}
+              width={1626}
+              height={967}
               sizes="(min-width: 912px) 768px, (min-width: 768px) calc(100vw - 152px), calc(100vw - 88px)"
               className="mt-6 h-auto w-full rounded-2xl"
             />
@@ -50,10 +50,10 @@ export default function ProductIntroduction() {
               education and entertainment.
             </p>
             <Image
-              src="/assets/stage-speaker-cutout.png"
+              src="/assets/stage-speaker.png"
               alt="The Zebbingo Stage speaker with three circular figurine pads, a yellow button and blue playback controls"
-              width={3332}
-              height={1615}
+              width={4032}
+              height={3024}
               sizes="(min-width: 912px) 768px, (min-width: 768px) calc(100vw - 152px), calc(100vw - 88px)"
               className="mb-6 h-auto w-full max-w-3xl rounded-2xl"
             />
