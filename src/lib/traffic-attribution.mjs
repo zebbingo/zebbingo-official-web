@@ -1,4 +1,4 @@
-const publicPaths = new Set(['/', '/safety/', '/about/', '/privacy_policy/']);
+const publicPaths = new Set(['/', '/safety/', '/privacy_policy/']);
 const publisherHosts = new Set(['linkedin.com', 'www.linkedin.com', 'lnkd.in', 'ico.org.uk', 'www.ico.org.uk']);
 const placementSources = new Map([
   ['ico_linkedin_post', 'linkedin'], ['zebbingo_linkedin_post', 'linkedin'], ['ico_report', 'ico'],

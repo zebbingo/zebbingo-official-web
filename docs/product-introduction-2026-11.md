@@ -206,8 +206,8 @@ The user accepted the proposal to place a short ICO Regulatory Sandbox sentence 
 ## Search indexing corrections — 9 November 2026
 
 - L5: Help people find the distinct public pages of the official website in search.
-- L4: Each public page declares its own canonical URL; the sitemap uses those URLs. The privacy contact remains a working mail link without creating a crawlable Cloudflare email-protection URL. The domain redirects remain in place.
+- L4: Each remaining public page declares its own canonical URL; the sitemap uses those URLs. Remove the unlinked About page and its sitemap entry at Han's request; its old URL returns 404. The privacy contact remains a working mail link without creating a crawlable Cloudflare email-protection URL. The domain redirects remain in place.
 - Authorization: Han requested the Search Console indexing fix on 9 November 2026; this change covers the official website. Production deployment remains a human action under `RELEASE.md`.
 - L3: Search crawlers receive self-referencing canonicals and sitemap URLs; Cloudflare's `email_off` markers exempt only the privacy contact link from email obfuscation. The address is publicly visible as a result.
-- L2: Build the site and inspect generated HTML and sitemap for all four URLs and the mail link markers; run the existing test suite. Post-deployment, verify the Cloudflare response and request Google reinspection. Google controls recrawl and indexing timing.
+- L2: Build the site and inspect generated HTML and sitemap for the remaining URLs and the mail link markers; verify the removed About URL returns 404 and run the existing test suite. Post-deployment, verify the Cloudflare response and request Google reinspection. Google controls recrawl and indexing timing.
 - L1: Page metadata, sitemap, privacy contact markup and package version are updated together. Existing 404 and redirect entries are not themselves content pages requiring indexing.
