@@ -202,3 +202,12 @@ The user supplied https://ico.org.uk/media2/qf3lrg30/regulatory-sandbox-final-re
 ## Homepage ICO report link
 
 The user accepted the proposal to place a short ICO Regulatory Sandbox sentence and direct report PDF link in the homepage Safety by design section, alongside the existing Safety page link. The Safety page retains its own link. Validate build, source lint and rendered homepage link/placement. Browser verification of the PDF destination and responsive appearance remains pending due to previously recorded access restrictions. Deliver in PR #9 without merge or production deployment.
+
+## Search indexing corrections — 9 November 2026
+
+- L5: Help people find the distinct public pages of the official website in search.
+- L4: Each public page declares its own canonical URL; the sitemap uses those URLs. The privacy contact remains a working mail link without creating a crawlable Cloudflare email-protection URL. The domain redirects remain in place.
+- Authorization: Han requested the Search Console indexing fix on 9 November 2026; this change covers the official website. Production deployment remains a human action under `RELEASE.md`.
+- L3: Search crawlers receive self-referencing canonicals and sitemap URLs; Cloudflare's `email_off` markers exempt only the privacy contact link from email obfuscation. The address is publicly visible as a result.
+- L2: Build the site and inspect generated HTML and sitemap for all four URLs and the mail link markers; run the existing test suite. Post-deployment, verify the Cloudflare response and request Google reinspection. Google controls recrawl and indexing timing.
+- L1: Page metadata, sitemap, privacy contact markup and package version are updated together. Existing 404 and redirect entries are not themselves content pages requiring indexing.
