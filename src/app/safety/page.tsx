@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Zebbingo | Safety",
   description:
     "Zebbingo Spark child safety and parental control by design.",
+  alternates: { canonical: "/safety/" },
 };
 
 const sections = [

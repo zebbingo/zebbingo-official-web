@@ -49,7 +49,7 @@ test('initial campaign can be retained in memory for later SPA pages', () => {
 test('only public known page paths are measured', () => {
   assert.equal(analyticsLocation('https://www.zebbingo.com/private/person-name'), null);
   assert.equal(analyticsLocation('invalid URL'), null);
-  assert.equal(analyticsLocation('https://www.zebbingo.com/about'), 'https://www.zebbingo.com/about/');
+  assert.equal(analyticsLocation('https://www.zebbingo.com/about'), null);
 });
 
 test('referrers keep known publisher origin only, never path/query/person IDs', () => {

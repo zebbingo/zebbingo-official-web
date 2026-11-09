@@ -4,6 +4,7 @@ import InfoPageLayout from "@/components/InfoPageLayout";
 export const metadata: Metadata = {
   title: "Zebbingo | Privacy Policy",
   description: "Read the Zebbingo privacy policy and how we handle your data.",
+  alternates: { canonical: "/privacy_policy/" },
 };
 
 const sections = [
@@ -17,12 +18,8 @@ const sections = [
         </p>
         <p>
           We can be contacted at{" "}
-          <a
-            href="mailto:contact@zebbingo.com"
-            className="underline underline-offset-4 transition-colors hover:text-zebbingo-blue-light"
-          >
-            contact@zebbingo.com
-          </a>
+          {/* Cloudflare otherwise rewrites this mailto link to a crawlable 404 path. */}
+          <span dangerouslySetInnerHTML={{ __html: '<!--email_off--><a href="mailto:contact@zebbingo.com" class="underline underline-offset-4 transition-colors hover:text-zebbingo-blue-light">contact@zebbingo.com</a><!--/email_off-->' }} />
           .
         </p>
       </>
