@@ -29,12 +29,12 @@ export default function ProductIntroduction() {
               Our figurines span history, professions, animals and fantasy.
               Meet historical characters such as Cleopatra, Shakespeare, Julius
               Caesar and a Viking; explore the worlds of a doctor, scientist,
-              firefighter and astronaut; or let a puppy, a T Rex, a cat, a
+              firefighter and astronaut; or let a puppy, a T-Rex, a cat, a
               fairytale princess or a unicorn spark your child’s imagination.
             </p>
             <Image
               src="/assets/figurines.png"
-              alt="Four Zebbingo figurines: an explorer in a white suit, a doctor, Julius Caesar and a blue T Rex"
+              alt="Four Zebbingo figurines: an explorer in a white suit, a doctor, Julius Caesar and a blue T-Rex"
               width={1626}
               height={967}
               sizes="(min-width: 912px) 768px, (min-width: 768px) calc(100vw - 152px), calc(100vw - 88px)"
@@ -77,7 +77,7 @@ export default function ProductIntroduction() {
             <div className="mt-6 max-w-3xl space-y-4">
               <p>
                 Spark lets your child talk with Julius Caesar about Roman times,
-                or ask the T Rex about life as a dinosaur over 66 million years ago.
+                or ask the T-Rex about life as a dinosaur over 66 million years ago.
               </p>
               <p>
                 We believe in the power of conversation to encourage children to
@@ -98,12 +98,6 @@ export default function ProductIntroduction() {
             <p className="mb-4">
               The Stage has no screen. Children can explore stories, songs and
               conversation without social media, advertising or video recommendation loops.
-            </p>
-            <p className="mb-4">
-              We participated in the ICO’s Regulatory Sandbox to explore privacy and safety by design.{' '}
-              <a href="https://ico.org.uk/media2/qf3lrg30/regulatory-sandbox-final-report-zebbingo.pdf" className="font-bold underline underline-offset-4 hover:text-sky-800">
-                Read the ICO’s report (PDF)
-              </a>.
             </p>
             <Link href="/safety/" className="font-bold underline underline-offset-4 hover:text-sky-800">
               Read about Spark safety and parental control
